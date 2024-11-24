@@ -6,11 +6,10 @@ interface SidebarProps {
   province: string;
   isOpen: boolean;
   onClose: () => void;
-  people: Person[];
   currentMessage?: Message;
 }
 
-export function Sidebar({ province, isOpen, onClose, people, currentMessage }: SidebarProps) {
+export function Sidebar({ province, isOpen, onClose, currentMessage }: SidebarProps) {
   if (!isOpen) return null;
 
   return (
@@ -22,31 +21,9 @@ export function Sidebar({ province, isOpen, onClose, people, currentMessage }: S
         >
           ✕
         </button>
-        <h2 className="text-2xl font-bold mt-4">{provinceToProvinceName[province as Provinces] || "Ontario"}</h2>
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        {/* People Section */}
-        <div className="p-4 border-b">
-          <h3 className="text-lg font-semibold mb-4">People in {provinceToProvinceName[province as Provinces] || "Ontario"}</h3>
-          <div className="grid grid-cols-2 gap-4">
-            {people.map((person, index) => (
-              <div key={index} className="flex items-center">
-                <img src={person.pfpUrl} className="w-16 h-16 rounded-lg shadow-lg mr-2 shadow-gray-700/50" alt=""/>
-                <div className="relative group">
-                  <span className="hidden group-hover:block absolute -mt-10 bg-white p-2 rounded shadow-lg">
-                    <div>
-                      <span className="block font-bold">{person.name}</span>
-                      <span className="block">{person.age}</span>
-                      <span className="block">{person.address}</span>
-                    </div>
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Policy Discussions Section */}
         <div className="flex-1 flex flex-col">
           <div className="p-4 bg-gray-50 border-b">
