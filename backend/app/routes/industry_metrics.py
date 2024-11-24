@@ -8,6 +8,7 @@ load_dotenv()
 
 router = APIRouter(prefix="")  # Empty prefix to maintain original URLs
 
+
 class IndustryRequest(BaseModel):
     industry: str
     role: str
@@ -18,6 +19,9 @@ class IndustryMetrics(BaseModel):
     employment_rate: float
     growth_rate: float
     job_satisfaction: float
+    work_life_balance: float
+    environmental_impact: float
+    diversity_index: float
 
 
 @router.post("/industry-metrics", response_model=IndustryMetrics)
@@ -28,10 +32,10 @@ async def get_industry_metrics(request: IndustryRequest):
         # Construct the prompt for Groq
         prompt = f"""You are a data analysis system that ONLY outputs numbers. For the {request.role} role in the {request.industry} industry, output exactly 4 numbers in this format:
 
-        [average annual income in CAD], [employment rate], [growth rate], [job satisfaction out of 10]
+        [average annual income in CAD], [employment rate], [growth rate], [job satisfaction out of 10], [work/life balance out of 10], [environmental (green) score out of 10], [gender/ethnic diversity score out of 10]
 
         CRITICAL RULES:
-        - Output ONLY 4 numbers separated by commas (e.g., 75000,95.5,4.2,8.1)
+        - Output ONLY 7 numbers separated by commas (e.g., 75000,95.5,4.2,8.1)
         - NO text explanations
         - NO currency symbols
         - NO % symbols
@@ -40,7 +44,7 @@ async def get_industry_metrics(request: IndustryRequest):
         - If exact data is not known, provide reasonable estimates based on industry trends
         
         Example correct response:
-        75000.0,92.3,4.7,8.1
+        75000.0,92.3,4.7,8.1,7.5,6.2,8.3
 
         Example incorrect responses:
         - "The average income is 75000" (No text allowed)
@@ -63,6 +67,9 @@ async def get_industry_metrics(request: IndustryRequest):
             employment_rate=metrics[1],
             growth_rate=metrics[2],
             job_satisfaction=metrics[3],
+            work_life_balance=metrics[4],
+            environmental_impact=metrics[5],
+            diversity_index=metrics[6],
         )
 
     except Exception as e:
