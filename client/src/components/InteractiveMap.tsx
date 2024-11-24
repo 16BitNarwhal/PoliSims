@@ -55,12 +55,32 @@ const App = () => {
           {
             sender: "Lumber_worker",
             receiver: "Fishing_manager",
+            conversation_history: ["a", "b"],
+          },
+          {
+            sender: "Lumber_worker",
+            receiver: "Fishing_manager",
             conversation_history: ["c", "d"],
           },
           {
             sender: "Lumber_worker",
             receiver: "Fishing_manager",
-            conversation_history: ["a", "b"],
+            conversation_history: ["c", "d"],
+          },
+          {
+            sender: "Lumber_worker",
+            receiver: "Fishing_manager",
+            conversation_history: ["c", "d"],
+          },
+          {
+            sender: "Lumber_worker",
+            receiver: "Fishing_manager",
+            conversation_history: ["c", "d"],
+          },
+          {
+            sender: "Lumber_worker",
+            receiver: "Fishing_manager",
+            conversation_history: ["c", "d"],
           }
         ];
         const newMessages = responseMessages.map(message => ({
@@ -84,6 +104,19 @@ const App = () => {
 
     return () => clearInterval(intervalId);
   }, []);
+
+  const handlePlay = () => {
+    setIsAnimating(true);
+    const animateMessages = (index: number) => {
+      if (index < messages.length) {
+        setCurrentMessageIndex(index);
+        setTimeout(() => animateMessages(index + 1), 2000); // Move to next message after 2 seconds
+      } else {
+        setIsAnimating(false);
+      }
+    };
+    animateMessages(currentMessageIndex);
+  };
 
   const mapClickHandler = (province: string, event: React.MouseEvent) => {
     if (!isDragging) {
@@ -172,7 +205,7 @@ const App = () => {
           >
             <CanadaMap
               fillColor="ForestGreen"
-              onHoverColor="Gold"
+              onHoverColor="ForestGreen"
               onClick={mapClickHandler}
             />
             {Object.keys(industries).map((industry, index) => (
@@ -200,6 +233,12 @@ const App = () => {
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         people={peoplePerProvince[provinceSelected] || []}
+      />
+      <Timeline
+        currentIndex={currentMessageIndex}
+        totalMessages={messages.length}
+        onIndexChange={setCurrentMessageIndex}
+        onPlay={handlePlay}
       />
     </>
   );
