@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, ReactElement } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CanadaMap, { Provinces } from "react-canada-map";
 import { Sidebar } from "@/components/Sidebar";
 import { Timeline } from "@/components/Timeline";
@@ -272,10 +272,12 @@ const App = () => {
 	}, [transform]);
 
 	return (
-    <div>
+		<div>
 			<div className="fixed top-0 left-0 right-0 bg-white shadow-md p-4 z-50 flex items-center justify-between">
 				<div className="flex items-center gap-3">
-					<h1 className="text-3xl font-bold text-green-700">PoliSims</h1>
+					<h1 className="text-3xl font-bold text-green-700">
+						PoliSims
+					</h1>
 					<Image
 						src={logo}
 						alt="PoliSims Logo"
