@@ -1,0 +1,1 @@
+based on the output of http://localhost:8000/bills, generate a score from -10 to +10, showing how each policy affects GDP, unemployment, inflation, interest rates, incomes, and happiness. save all of these scores, along with the associated policy data, in a text file.
