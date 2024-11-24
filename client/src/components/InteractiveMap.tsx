@@ -5,7 +5,6 @@ import CanadaMap, { Provinces } from "react-canada-map";
 import { Sidebar } from "@/components/Sidebar";
 import { Timeline } from "@/components/Timeline";
 import { Person, Message } from "@/types";
-import { ChatBubbles } from "@/components/ChatBubbles";
 import Image from "next/image";
 import logo from "../assets/polisims.png";
 
@@ -66,7 +65,6 @@ const App = () => {
 	const [isAnimating, setIsAnimating] = useState(false);
 	const [mailPosition, setMailPosition] = useState({ left: "0%", top: "0%" });
 	const [showMail, setShowMail] = useState(false);
-	const [showChat, setShowChat] = useState(false);
 	const [policy, setPolicy] = useState("");
 
 	useEffect(() => {
@@ -385,7 +383,7 @@ const App = () => {
 								}}
 								onClick={(e) => {
 									e.stopPropagation();
-									setShowChat(true);
+									setIsSidebarOpen(true);
 								}}
 							>
 								<img
@@ -395,15 +393,6 @@ const App = () => {
 								/>
 							</div>
 						)}
-						<ChatBubbles
-							messages={messages.slice(
-								0,
-								currentMessageIndex + 1
-							)}
-							isOpen={showChat}
-							onClose={() => setShowChat(false)}
-							position={mailPosition}
-						/>
 						{Object.keys(industries).map((industry, index) => (
 							<div
 								key={index}
@@ -452,7 +441,8 @@ const App = () => {
 				province={provinceSelected}
 				isOpen={isSidebarOpen}
 				onClose={() => setIsSidebarOpen(false)}
-				people={peoplePerProvince[provinceSelected] || []}
+				people={peoplePerProvince[provinceSelected as Provinces] || []}
+				currentMessage={messages[currentMessageIndex]}
 			/>
 			<Timeline
 				currentIndex={currentMessageIndex}
