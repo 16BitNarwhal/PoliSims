@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, ReactElement } from "react";
 import CanadaMap, { Provinces } from "react-canada-map";
 import { Sidebar } from "@/components/Sidebar";
 import { Timeline } from "@/components/Timeline";
