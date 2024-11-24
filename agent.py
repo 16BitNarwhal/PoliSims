@@ -24,12 +24,14 @@ industries = [
 
 class Agent:
     called = 0
-    def __init__(self, id: int, name: str, industry: str, status: str, about: Dict):
-        self.id = id
-        self.name = name
+
+    def __init__(self, industry: str, status: str):
         self.industry = industry
         self.status = status  # 'decision_maker' or 'worker'
-        self.about = about
+
+        self.description = ""
+        self.related = False
+        self.interacted_with = []
         self.conversation_history = []
         self.most_affected_industries = []  # New member to store affected industries
 
@@ -39,32 +41,40 @@ class Agent:
             model="llama-3.1-8b-instant",
         )
         response = response.choices[0].message.content
-        response = response.replace('```', '').strip()
+        response = response.replace("```", "").strip()
         print(prompt)
         return response
 
-    def process_policy(self, client: Groq, policy: str) -> Dict:
+    def generate_descriptions(self, client: Groq, policy: str) -> None:
         prompt = f"""
         You are a {self.status} in the {self.industry} industry. Given the policy: {policy},
-        determine the effects on your role and industry. From the following list of industries: {industries},
+        shortly summarize the effects on your role and industry. If it doesn't really affect your industry, please
+        simply state that it doesn't with a very short argument why it doesn't.
+        ONLY RETURN THE SUMMARY
+        """
+        response = self.talk_to_llama(client, prompt)
+        self.description = response
+
+    def process_policy(self, client: Groq, policy: str) -> bool:
+        prompt = f"""
+        You are a {self.status} in the {self.industry} industry. Given the policy: {policy},
+        shortly summarize the effects on your role and industry. From the following list of industries: {industries},
         identify the 2 most affected industries. Provide the effects in JSON format:
         "impact": "description of impact",
         "affected_agents": ["industry1", "industry2"]
         ONLY RETURN THE JSON DO NOT RETURN ANYTHING OUTSIDE OF THE JSON
         """
         response = self.talk_to_llama(client, prompt)
-        # print(f"Response for {self.name}: {response}")  # Debug statement
         try:
             result = json.loads(response)
+            self.description = result.get("impact", [])
             self.most_affected_industries = result.get("affected_agents", [])
-            return result
+            return True
         except json.JSONDecodeError:
-            return {"impact": "Error processing response.", "affected_agents": []}
+            return False
 
     def converse_with_agents(self, client: Groq, agents: List["Agent"], policy: str):
-        effects = self.process_policy(client, policy)
         affected_agents = self.most_affected_industries
-        # print(f"Affected agents for {self.name}: {affected_agents}")  # Debug statement
         for agent in agents:
             if agent.industry in affected_agents and agent.id != self.id:
                 # Simulate a more realistic conversation
@@ -89,64 +99,93 @@ class Agent:
                 response = self.talk_to_llama(client, prompt)
                 conversation.append(f"{agent.name} ({agent.status}): {response}")
 
-                self.conversation_history.append({
-                    "sender": [self.name, self.status],
-                    "receiver": [agent.name, agent.status],
-                    "conversation_history": conversation
-                })
-                agent.conversation_history.append({
-                    "sender": [self.name, self.status],
-                    "receiver": [agent.name, agent.status],
-                    "conversation_history": conversation
-                })
+                self.conversation_history.append(
+                    {
+                        "sender": [self.industry, self.status],
+                        "receiver": [agent.industry, agent.status],
+                        "conversation_history": conversation,
+                    }
+                )
+                agent.conversation_history.append(
+                    {
+                        "sender": [self.industry, self.status],
+                        "receiver": [agent.industry, agent.status],
+                        "conversation_history": conversation,
+                    }
+                )
+
 
 class PolicySimulation:
     def __init__(self, api_key: str):
         self.client = Groq(api_key=api_key)
         self.agents: List[Agent] = []
 
+    def talk_to_llama(self, client: Groq, prompt: str) -> str:
+        response = client.chat.completions.create(
+            messages=[{"role": "user", "content": prompt}],
+            model="llama-3.1-8b-instant",
+        )
+        response = response.choices[0].message.content
+        response = response.replace("```", "").strip()
+        print(prompt)
+        return response
+
+    def choose_most_related(self, client: Groq, policy: str) -> None:
+        prompt = f"""
+        From this list of industries, {industries}, choose the top 3 industries that are most affected by the following
+        policy: {policy}
+        ONLY RETURN 3 INDUSTRIES FROM THE GIVEN LIST, COMMA SEPARATED
+        """
+        response = self.talk_to_llama(client, prompt)
+        for agent in self.agents:
+            if agent.industry in response:
+                agent.directly_affected = True
+
     def create_agents(self):
         for industry in industries:
-            for status in ["decision_maker", "manager", "worker"]:
-                about = {
-                    "age": random.randint(25, 65),
-                    "location": "Toronto, ON",
-                    "income": random.randint(50000, 150000),
-                    "profession": f"{status} in {industry}",
-                    "political_preference": random.choice(
-                        ["conservative", "moderate", "liberal"]
-                    ),
-                }
-                agent_id = len(self.agents)
-                name = f"{industry}_{status}"
-                self.agents.append(Agent(agent_id, name, industry, status, about))
+            for status in ["decision_maker", "worker", "consumer"]:
+                self.agents.append(Agent(industry, status))
 
-    def simulate_policy_impact(self, policy: str):
+    def simulate_policy_impact(self, policy: str) -> None:
         for agent in self.agents:
-            agent.converse_with_agents(self.client, self.agents, policy)
+            agent.generate_descriptions(self.client, policy)
+        self.choose_most_related(self.client, policy)
+        for agent in self.agents:
+            if agent.related:
+                agent.process_policy(self.client, policy)
+                agent.converse_with_agents(self.client, self.agents, policy)
 
     def get_conversation_history(self):
         conversation_history = []
         for agent in self.agents:
             for conversation in agent.conversation_history:
-                conversation_history.append({
-                    "sender": {
-                        "industry": agent.industry,
-                        "role": agent.status
-                    },
-                    "receiver": {
-                        "industry": [a.industry for a in self.agents if a.name == conversation["receiver"]][0],
-                        "role": [a.status for a in self.agents if a.name == conversation["receiver"]][0]
-                    },
-                    "conversation_history": conversation["conversation_history"]
-                })
+                conversation_history.append(
+                    {
+                        "sender": {"industry": agent.industry, "role": agent.status},
+                        "receiver": {
+                            "industry": [
+                                a.industry
+                                for a in self.agents
+                                if a.name == conversation["receiver"]
+                            ][0],
+                            "role": [
+                                a.status
+                                for a in self.agents
+                                if a.name == conversation["receiver"]
+                            ][0],
+                        },
+                        "conversation_history": conversation["conversation_history"],
+                    }
+                )
         return conversation_history
 
 
-@app.route('/api/messages', methods=['GET'])
+@app.route("/api/messages", methods=["GET"])
 def get_messages():
     try:
-        sim = PolicySimulation(api_key="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")
+        sim = PolicySimulation(
+            api_key="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"
+        )
         sim.create_agents()
         policy = "Universal Basic Income policy"
         sim.simulate_policy_impact(policy)
@@ -154,5 +193,21 @@ def get_messages():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
+def main():
+    sim = PolicySimulation(
+        api_key="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"
+    )
+    sim.create_agents()
+    policy = "Universal Basic Income policy"
+    sim.simulate_policy_impact(policy)
+    for agent in sim.agents:
+        print(f"Agent {agent.name} conversation history: {agent.conversation_history}")
+        print(
+            f"Most affected industries for {agent.name}: {agent.most_affected_industries}"
+        )
+
+
 if __name__ == "__main__":
-    app.run(port=3001, debug=True)
+    # app.run(port=3001, debug=True)
+    main()

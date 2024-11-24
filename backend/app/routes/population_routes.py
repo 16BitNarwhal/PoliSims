@@ -9,6 +9,7 @@ router = APIRouter(prefix="")  # Empty prefix to maintain original URLs
 # Initialize components
 census_scraper = CensusScraper()
 
+
 @router.get("/population", response_model=Dict)
 async def get_population():
     """Get total population data."""
@@ -18,7 +19,7 @@ async def get_population():
         if not data or "total_population" not in data:
             raise HTTPException(
                 status_code=503,
-                detail="Unable to fetch population data. Please try again later."
+                detail="Unable to fetch population data. Please try again later.",
             )
         return data
     except ValueError as ve:
@@ -26,9 +27,9 @@ async def get_population():
     except Exception as e:
         logger.error(f"Error in /population: {str(e)}")
         raise HTTPException(
-            status_code=500,
-            detail="An error occurred while processing your request."
+            status_code=500, detail="An error occurred while processing your request."
         )
+
 
 @router.get("/population/age", response_model=Dict)
 async def get_age_distribution():
@@ -39,7 +40,7 @@ async def get_age_distribution():
         if not data or not data.get("age_groups"):
             raise HTTPException(
                 status_code=503,
-                detail="Unable to fetch age distribution data. Please try again later."
+                detail="Unable to fetch age distribution data. Please try again later.",
             )
         return data
     except ValueError as ve:
@@ -47,6 +48,5 @@ async def get_age_distribution():
     except Exception as e:
         logger.error(f"Error in /population/age: {str(e)}")
         raise HTTPException(
-            status_code=500,
-            detail="An error occurred while processing your request."
+            status_code=500, detail="An error occurred while processing your request."
         )
