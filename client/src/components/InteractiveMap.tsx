@@ -8,6 +8,7 @@ import { Person, Message } from "@/types";
 import Image from "next/image";
 import logo from "../assets/polisims.png";
 import { policyDescriptions } from "@/data/policyDescriptions";
+import { StatVis } from "./StatVis";
 
 const industries = {
 	Lumber: { position: { left: "8%", top: "40%" } }, // BC
@@ -51,6 +52,7 @@ const App = () => {
 	const mapContainerRef = useRef<HTMLDivElement>(null);
 
 	const [messages, setMessages] = useState<Message[]>([]);
+    const [metrics, setMetrics] = useState<any[]>([]);
 	const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 	const [isAnimating, setIsAnimating] = useState(false);
 	const [mailPosition, setMailPosition] = useState({ left: "0%", top: "0%" });
@@ -64,10 +66,10 @@ const App = () => {
 				const response = await fetch(
 					"http://localhost:3001/api/messages"
 				);
-				const responseMessages = (await response.json()).data;
-				console.log(responseMessages);
+                const responseData = await response.json();
+				const responseMessages = responseData.data;
 				const newMessages = responseMessages.map(
-					(conversation: any) => ({
+                    (conversation: any) => ({
 						sender: {
 							industry: conversation[0]["speaker"].toLowerCase(),
 							role: conversation[0]["status"].toLowerCase(),
@@ -81,7 +83,10 @@ const App = () => {
 						),
 					})
 				) as Message[];
+                const responseMetrics = responseData.metrics;
 				setMessages(newMessages);
+                console.log(responseMetrics);
+                setMetrics(responseMetrics);
 			} catch (error) {
 				console.error("Error fetching messages:", error);
 			}
@@ -491,6 +496,7 @@ const App = () => {
 				onClose={() => setIsSidebarOpen(false)}
 				currentMessage={messages[currentMessageIndex]}
 			/>
+            <StatVis currentMetrics={metrics[currentMessageIndex]} />
 			<Timeline
 				currentIndex={currentMessageIndex}
 				totalMessages={messages.length}

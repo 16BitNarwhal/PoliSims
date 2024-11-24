@@ -34,6 +34,14 @@ conversations = []
 metricss = []
 metrics = ""
 
+keys = [
+    "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",
+    "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",
+    "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"
+]
+current_key = 0
+
+client = Groq(api_key=keys[current_key])
 
 class Agent:
     def __init__(self, industry: str, status: str):
@@ -46,7 +54,10 @@ class Agent:
         self.conversation_history = []
         self.most_affected_industries = []  # New member to store affected industries
 
-    def talk_to_llama(self, client: Groq, prompt: str) -> str:
+    def talk_to_llama(self, prompt: str) -> str:
+        global current_key
+        current_key = (current_key + 1) % len(keys)
+        client = Groq(api_key=keys[current_key])
         response = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
             model="llama-3.1-8b-instant",
@@ -86,7 +97,7 @@ class Agent:
         prompt += "\nKeep your response conversational, natural, and focused on the specific points mentioned. Answer in 1-2 sentences."
         return prompt
 
-    def simulate_conversation(self, other_agent, client):
+    def simulate_conversation(self, other_agent):
         if self.has_talked_to(other_agent):
             return None
 
@@ -98,7 +109,7 @@ class Agent:
             base_prompt="share how the policy has affected you and ask about their experience, considering their specific situation.",
             other_agent=other_agent,
         )
-        response = self.talk_to_llama(client, first_prompt)
+        response = self.talk_to_llama(first_prompt)
         conversation.append(
             {"speaker": self.industry, "status": self.status, "message": response}
         )
@@ -110,7 +121,7 @@ class Agent:
             other_agent=self,
             messages=conversation,
         )
-        response = self.talk_to_llama(client, second_prompt)
+        response = self.talk_to_llama(second_prompt)
         conversation.append(
             {
                 "speaker": other_agent.industry,
@@ -126,7 +137,7 @@ class Agent:
             other_agent=other_agent,
             messages=conversation,
         )
-        response = self.talk_to_llama(client, third_prompt)
+        response = self.talk_to_llama(third_prompt)
         conversation.append(
             {"speaker": self.industry, "status": self.status, "message": response}
         )
@@ -138,7 +149,7 @@ class Agent:
             other_agent=self,
             messages=conversation,
         )
-        response = self.talk_to_llama(client, fourth_prompt)
+        response = self.talk_to_llama(fourth_prompt)
         conversation.append(
             {
                 "speaker": other_agent.industry,
@@ -233,118 +244,13 @@ class Agent:
         Law: True
 
         Economic and Social Impacts:
-        GDP: -0.132% (Short-term marine industry restrictions)
-        Unemployment: -0.142% (New conservation jobs)
+        GDP: -0.13% (Short-term marine industry restrictions)
+        Unemployment: -0.14% (New conservation jobs)
         Inflation: 0.000% (No significant impact)
         Interest Rates: 0.000% (No direct impact)
-        Incomes: +0.123% (Tourism sector growth)
+        Incomes: +0.12% (Tourism sector growth)
         Homelessness: 0.000% (No direct impact)
-        Happiness: +0.423% (Environmental preservation)
-        --------------------------------------------------
-        Bill Number: C-11
-        Session: 37-1
-        Introduced: 2001-02-21
-        Name: An Act respecting immigration to Canada and the granting of refugee protection to persons who are displaced, persecuted or in danger
-        Law: True
-
-        Economic and Social Impacts:
-        GDP: +0.312% (Increased workforce and skills)
-        Unemployment: -0.231% (Labor market expansion)
-        Inflation: +0.132% (Minor demand increase)
-        Interest Rates: 0.000% (No direct impact)
-        Incomes: +0.142% (Labor market dynamics)
-        Homelessness: +0.123% (Initial settlement challenges)
-        Happiness: +0.324% (Humanitarian benefits)
-        --------------------------------------------------
-        Bill Number: C-12
-        Session: 37-1
-        Introduced: 2001-02-21
-        Name: An Act to amend the Judges Act and to amend another Act in consequence
-        Law: True
-
-        Economic and Social Impacts:
-        GDP: 0.000% (No direct economic impact)
-        Unemployment: 0.000% (No significant impact)
-        Inflation: 0.000% (No direct impact)
-        Interest Rates: 0.000% (No direct impact)
-        Incomes: +0.132% (Judicial compensation adjustments)
-        Homelessness: 0.000% (No direct impact)
-        Happiness: +0.142% (Improved judicial system)
-        --------------------------------------------------
-        Bill Number: C-13
-        Session: 37-1
-        Introduced: 2001-02-23
-        Name: An Act to amend the Excise Tax Act
-        Law: True
-
-        Economic and Social Impacts:
-        GDP: -0.142% (Tax adjustment effects)
-        Unemployment: 0.000% (No significant impact)
-        Inflation: +0.132% (Minor price adjustments)
-        Interest Rates: 0.000% (No direct impact)
-        Incomes: -0.123% (Tax burden changes)
-        Homelessness: 0.000% (No direct impact)
-        Happiness: -0.132% (Tax-related stress)
-        --------------------------------------------------
-        Bill Number: C-14
-        Session: 37-1
-        Introduced: 2001-03-01
-        Name: An Act respecting shipping and navigation and to amend the Shipping Conferences Exemption Act, 1987 and other Acts
-        Law: True
-
-        Economic and Social Impacts:
-        GDP: +0.231% (Maritime sector efficiency)
-        Unemployment: -0.142% (Maritime job creation)
-        Inflation: -0.123% (Reduced shipping costs)
-        Interest Rates: 0.000% (No direct impact)
-        Incomes: +0.132% (Maritime sector wages)
-        Homelessness: 0.000% (No direct impact)
-        Happiness: +0.142% (Maritime safety improvements)
-        --------------------------------------------------
-        Bill Number: C-17
-        Session: 37-1
-        Introduced: 2001-03-15
-        Name: An Act to amend the Budget Implementation Act, 1997 and the Financial Administration Act
-        Law: True
-
-        Economic and Social Impacts:
-        GDP: +0.231% (Improved fiscal management)
-        Unemployment: 0.000% (No direct impact)
-        Inflation: -0.132% (Better financial controls)
-        Interest Rates: -0.123% (Enhanced fiscal stability)
-        Incomes: +0.142% (Government efficiency savings)
-        Homelessness: 0.000% (No direct impact)
-        Happiness: +0.132% (Better public services)
-        --------------------------------------------------
-        Bill Number: C-18
-        Session: 37-1
-        Introduced: 2001-03-15
-        Name: An Act to amend the Federal-Provincial Fiscal Arrangements Act
-        Law: True
-
-        Economic and Social Impacts:
-        GDP: +0.312% (Improved federal-provincial coordination)
-        Unemployment: -0.142% (Better resource allocation)
-        Inflation: 0.000% (No significant impact)
-        Interest Rates: -0.123% (Enhanced fiscal stability)
-        Incomes: +0.231% (More efficient public services)
-        Homelessness: -0.132% (Better provincial support programs)
-        Happiness: +0.213% (Improved public services)
-        --------------------------------------------------
-        Bill Number: C-20
-        Session: 37-1
-        Introduced: 2001-03-20
-        Name: An Act for granting to Her Majesty certain sums of money for the public service of Canada for the financial year ending March 31, 2001
-        Law: True
-
-        Economic and Social Impacts:
-        GDP: +0.231% (Public service funding impact)
-        Unemployment: -0.132% (Public sector employment)
-        Inflation: +0.123% (Government spending effect)
-        Interest Rates: 0.000% (No significant impact)
-        Incomes: +0.142% (Public service wages)
-        Homelessness: -0.123% (Social service funding)
-        Happiness: +0.213% (Improved public services)
+        Happiness: +0.42% (Environmental preservation)
 
         Taking the above data into account of how previous bills affect the following metrics. 
 
@@ -352,23 +258,21 @@ class Agent:
 
         Here is the most recent conversation between people about the bill : {conversation}
 
-        I need you to produce the following output in their current values in the EXACT FORMAT, NOTHING ELSE: 
+        I need you to produce the following metrics in this format: 
 
-        json of:
+GDP: A%, UNEMPLOYMENT: B%, INFLATION: C%, INTEREST: D%
 
-        GDP:
-        UNEMPLOYMENT:
-        INFLATION:
-        INTEREST:
+        Ensure nothing else is said. Follow the format without introductory or concluding statements. For example:
 
+GDP: 1.2%, UNEMPLOYMENT: 2.3%, INFLATION: 3.4%, INTEREST: 4.5%
 
-        NOTHING OUTSIDE OF THAT JSON, THANK YOU, NO NEWLINE CHARS OR AYTHING 
+        Do not output anything else than the metrics.
 
         """
 
 
         global metrics
-        metrics = self.talk_to_llama(client, metrics_prompt)
+        metrics = self.talk_to_llama(metrics_prompt)
         # conversations.append({"conversation" : conversation, "metrics" : metrics})
         conversations.append(conversation)
         metricss.append(metrics)
@@ -376,17 +280,17 @@ class Agent:
         print(conversations)
         return conversation
 
-    def generate_descriptions(self, client: Groq, policy: str) -> None:
+    def generate_descriptions(self, policy: str) -> None:
         prompt = f"""
         You are a {self.status} in the {self.industry} industry. Given the policy: {policy},
         very shortly summarize the effects on your role and industry. If it doesn't really affect your industry, please
         simply state that it doesn't with a very short argument why it doesn't.
         ONLY RETURN THE SUMMARY
         """
-        response = self.talk_to_llama(client, prompt)
+        response = self.talk_to_llama(prompt)
         self.description = response
 
-    def process_policy(self, client: Groq, policy: str) -> bool:
+    def process_policy(self, policy: str) -> bool:
         prompt = f"""
         You are a {self.status} in the {self.industry} industry. Given the policy: {policy},
         shortly summarize the effects on your role and industry. From the following list of industries: {industries},
@@ -396,7 +300,7 @@ class Agent:
         ONLY RETURN THE JSON DO NOT RETURN ANYTHING OUTSIDE OF THE JSON
         """
         print("called")
-        response = self.talk_to_llama(client, prompt)
+        response = self.talk_to_llama(prompt)
         try:
             result = json.loads(response)
             self.description = result.get("impact", [])
@@ -405,21 +309,23 @@ class Agent:
         except json.JSONDecodeError:
             return False
 
-    def converse_with_agents(self, client: Groq, agents: List["Agent"]):
+    def converse_with_agents(self, agents: List["Agent"]):
         affected_agents = self.most_affected_industries
         for agent in agents:
             if agent.industry in affected_agents:
                 self.conversation_history.append(
-                    self.simulate_conversation(agent, client)
+                    self.simulate_conversation(agent)
                 )
 
 
 class PolicySimulation:
-    def __init__(self, api_key: str):
-        self.client = Groq(api_key=api_key)
+    def __init__(self):
         self.agents: List[Agent] = []
 
-    def talk_to_llama(self, client: Groq, prompt: str) -> str:
+    def talk_to_llama(self, prompt: str) -> str:
+        global current_key
+        current_key = (current_key + 1) % len(keys)
+        client = Groq(api_key=keys[current_key])
         response = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
             model="llama-3.1-8b-instant",
@@ -428,13 +334,13 @@ class PolicySimulation:
         response = response.replace("```", "").strip()
         return response
 
-    def choose_most_related(self, client: Groq, policy: str) -> None:
+    def choose_most_related(self, policy: str) -> None:
         prompt = f"""
         From this list of industries, {industries}, choose the top 3 industries that are most affected by the following
         policy: {policy}
         ONLY RETURN 3 INDUSTRIES FROM THE GIVEN LIST, COMMA SEPARATED AND NOTHING ELSE
         """
-        response = self.talk_to_llama(client, prompt)
+        response = self.talk_to_llama(prompt)
         response = response.split(", ")
         for agent in self.agents:
             if agent.industry in response:
@@ -447,12 +353,12 @@ class PolicySimulation:
 
     def simulate_policy_impact(self, policy: str) -> None:
         for agent in self.agents:
-            agent.generate_descriptions(self.client, policy)
-        self.choose_most_related(self.client, policy)
+            agent.generate_descriptions(policy)
+        self.choose_most_related(policy)
         for agent in self.agents:
             if agent.directly_affected:
-                agent.process_policy(self.client, policy)
-                agent.converse_with_agents(self.client, self.agents)
+                agent.process_policy(policy)
+                agent.converse_with_agents(self.agents)
 
     def get_conversation_history(self):
         conversation_history = []
@@ -503,9 +409,7 @@ def setPolicy():
     global policy, conversations
     policy = request.get_json()['policy']
     print(policy)
-    sim = PolicySimulation(
-        api_key="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"
-    )
+    sim = PolicySimulation()
     conversations = []
     sim.create_agents()
     sim.simulate_policy_impact(policy)

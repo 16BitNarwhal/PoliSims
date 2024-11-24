@@ -1,18 +1,21 @@
 import React from 'react';
-import { Person, Message } from '@/types';
-import { Provinces } from 'react-canada-map';
 
 interface StatVisProps {
-  currentMessage?: Message;
+    currentMetrics?: any;
 }
 
-export function StatVis({ currentMessage }: StatVisProps) {
+export function StatVis({ currentMetrics }: StatVisProps) {
+    console.log(currentMetrics); // {"GDP": "0.000", "UNEMPLOYMENT": "0.000", "INFLATION": "0.000", "INTEREST": "0.000"}
+
   return (
-    currentMessage && (
-      <div className="fixed right-0 top-1/2 h-full w-96 shadow-lg z-50 transition-transform duration-300 ease-in-out transform -translate-x-full flex flex-col">
-        metric A <br />
-        metric B <br />
-        metric C <br />
+    currentMetrics && (
+      <div className="fixed bottom-0 right-0 h-auto z-50 transition-transform duration-300 ease-in-out transform w-80 overflow-hidden">
+        <div className="bg-white p-4 rounded-t-lg shadow-lg">
+          <h3 className="font-bold text-lg mb-2">Change in Metrics</h3>
+          <pre className="whitespace-pre-wrap break-words w-full">
+            {JSON.stringify(currentMetrics, null, 2)}
+          </pre>
+        </div>
       </div>
     )
   );
