@@ -22,8 +22,8 @@ export const ChatBubbles: React.FC<ChatBubblesProps> = ({ messages, isOpen, onCl
     <div 
       className="fixed bg-white rounded-lg shadow-lg p-4 w-96 h-[300px] flex flex-col"
       style={{
-        left: `calc(${position.left} + 50px)`,
-        top: `calc(${position.top} - 50px)`,
+        left: `calc(${position.left} + 900px)`,
+        top: `calc(${position.top} + 150px)`,
         transform: 'translate(0, -100%)',
         zIndex: 2000
       }}
