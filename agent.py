@@ -273,7 +273,7 @@ def tyeshi():
 def main():
 
     sim = PolicySimulation(
-        api_key="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"
+        api_key="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"
     )
     sim.create_agents()
     policy = "Universal Basic Income policy"
@@ -284,7 +284,6 @@ def main():
     #     print(
     #         f"Most affected industries for {agent.industry}: {agent.most_affected_industries}"
     #     )
-
 
 if __name__ == "__main__":
     import threading
