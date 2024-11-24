@@ -6,18 +6,25 @@ import { Sidebar } from "@/components/Sidebar";
 import { Timeline } from "@/components/Timeline";
 import { Person, Message } from "@/types";
 
-const peoplePerProvince: Record<string, Person[]> = {
-  "ON": [
-    { name: "John Doe", age: 25, gender: "male", address: "123 Main St", pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${Math.floor(Math.random() * 50) + 1}.jpg` },
-    { name: "Jane Smith", age: 30, gender: "female", address: "456 Elm St", pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${Math.floor(Math.random() * 50) + 1}.jpg` },
-    { name: "Jane Smith", age: 30, gender: "female", address: "456 Elm St", pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${Math.floor(Math.random() * 50) + 1}.jpg` },
-    { name: "Jane Smith", age: 30, gender: "female", address: "456 Elm St", pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${Math.floor(Math.random() * 50) + 1}.jpg` },
-    { name: "Jane Smith", age: 30, gender: "female", address: "456 Elm St", pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${Math.floor(Math.random() * 50) + 1}.jpg` },
-    { name: "Jane Smith", age: 30, gender: "female", address: "456 Elm St", pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${Math.floor(Math.random() * 50) + 1}.jpg` },
-    { name: "Jane Smith", age: 30, gender: "female", address: "456 Elm St", pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${Math.floor(Math.random() * 50) + 1}.jpg` },
-    { name: "Jane Smith", age: 30, gender: "female", address: "456 Elm St", pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${Math.floor(Math.random() * 50) + 1}.jpg` },
-  ],
+interface PeoplePerProvince {
+  [province: string]: Person[];
+}
+
+const generatePeoplePerProvince = (): PeoplePerProvince => {
+  // Use fixed indices for consistent rendering between server and client
+  const indices = [1, 2, 3, 4, 5, 6, 7, 8];
+  return {
+    "ON": indices.map((index) => ({
+      name: `Person ${index}`,
+      age: 25 + index,
+      gender: index % 2 === 0 ? "male" : "female",
+      address: `${index * 100} Main St`,
+      pfpUrl: `https://xsgames.co/randomusers/assets/avatars/pixel/${index}.jpg`
+    }))
+  };
 };
+
+const peoplePerProvince = generatePeoplePerProvince();
 
 const industries = {
   "Lumber": { position: { left: "8%", top: "40%" } }, // BC
@@ -28,6 +35,13 @@ const industries = {
   "Insurance": { position: { left: "56%", top: "45%" } }, // QC
   "Grocery": { position: { left: "64%", top: "68%" } }, // QC
   "Transportation": { position: { left: "41%", top: "70%" } }, // ON
+};
+
+const getIndustryPosition = (industryName: string) => {
+  const key = Object.keys(industries).find(
+    k => k.toLowerCase() === industryName.toLowerCase()
+  );
+  return key && industries[key as keyof typeof industries]?.position || null;
 };
 
 const App = () => {
@@ -45,6 +59,8 @@ const App = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [mailPosition, setMailPosition] = useState({ left: "0%", top: "0%" });
+  const [showMail, setShowMail] = useState(false);
 
   useEffect(() => {
     const pollMessages = async () => {
@@ -106,16 +122,56 @@ const App = () => {
   }, []);
 
   const handlePlay = () => {
+    // Reset animation state if already animating
+    if (isAnimating) {
+      setIsAnimating(false);
+      setShowMail(false);
+      setCurrentMessageIndex(0);
+      return;
+    }
+
     setIsAnimating(true);
-    const animateMessages = (index: number) => {
+    setCurrentMessageIndex(0); // Reset to start
+    const animateMessages = async (index: number) => {
       if (index < messages.length) {
+        const message = messages[index];
         setCurrentMessageIndex(index);
-        setTimeout(() => animateMessages(index + 1), 2000); // Move to next message after 2 seconds
+        
+        // Get positions for sender and receiver
+        const senderPosition = getIndustryPosition(message.sender.industry);
+        const receiverPosition = getIndustryPosition(message.receiver.industry);
+        
+        if (senderPosition && receiverPosition) {
+          // Start mail at sender position
+          setMailPosition({ left: senderPosition.left, top: senderPosition.top });
+          setShowMail(true);
+
+          // Animate to receiver position
+          await new Promise<void>((resolve) => {
+            const mailElement = document.querySelector('.mail-icon') as HTMLElement;
+            if (mailElement) {
+              mailElement.style.transition = 'left 1s ease-in-out, top 1s ease-in-out';
+              mailElement.style.left = receiverPosition.left;
+              mailElement.style.top = receiverPosition.top;
+              
+              setTimeout(() => {
+                setShowMail(false);
+                resolve();
+              }, 1000);
+            } else {
+              resolve();
+            }
+          });
+        }
+
+        // Wait additional second before next message
+        setTimeout(() => animateMessages(index + 1), 1000);
       } else {
         setIsAnimating(false);
+        setShowMail(false);
       }
     };
-    animateMessages(currentMessageIndex);
+    animateMessages(0); // Start from index 0
   };
 
   const mapClickHandler = (province: string, event: React.MouseEvent) => {
@@ -208,6 +264,57 @@ const App = () => {
               onHoverColor="ForestGreen"
               onClick={mapClickHandler}
             />
+            {isAnimating && currentMessageIndex < messages.length && (
+              <>
+                <div
+                  className="absolute w-4 h-4 bg-blue-500 rounded-full"
+                  style={{
+                    left: getIndustryPosition(messages[currentMessageIndex].sender.industry)?.left,
+                    top: getIndustryPosition(messages[currentMessageIndex].sender.industry)?.top,
+                    transform: 'translate(-50%, -50%)',
+                    animation: 'pulse 1s infinite'
+                  }}
+                />
+                <div
+                  className="absolute w-3 h-3 bg-green-500 rounded-full"
+                  style={{
+                    '--start-x': getIndustryPosition(messages[currentMessageIndex].sender.industry)?.left,
+                    '--start-y': getIndustryPosition(messages[currentMessageIndex].sender.industry)?.top,
+                    '--end-x': getIndustryPosition(messages[currentMessageIndex].receiver.industry)?.left,
+                    '--end-y': getIndustryPosition(messages[currentMessageIndex].receiver.industry)?.top,
+                    left: getIndustryPosition(messages[currentMessageIndex].sender.industry)?.left,
+                    top: getIndustryPosition(messages[currentMessageIndex].sender.industry)?.top,
+                    animation: 'travel 2s ease-in-out forwards'
+                  } as React.CSSProperties}
+                  onAnimationEnd={() => {
+                    if (currentMessageIndex < messages.length - 1) {
+                      setCurrentMessageIndex(prev => prev + 1);
+                    } else {
+                      setIsAnimating(false);
+                    }
+                  }}
+                />
+              </>
+            )}
+            {showMail && (
+              <div
+                className="mail-icon"
+                style={{
+                  position: 'absolute',
+                  left: mailPosition.left,
+                  top: mailPosition.top,
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 1000,
+                  transition: 'left 1s ease-in-out, top 1s ease-in-out'
+                }}
+              >
+                <img
+                  src="/mail.png"
+                  alt="Mail"
+                  className="w-8 h-8"
+                />
+              </div>
+            )}
             {Object.keys(industries).map((industry, index) => (
               <div
                 key={index}
@@ -245,4 +352,3 @@ const App = () => {
 };
 
 export default App;
-

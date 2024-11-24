@@ -62,6 +62,33 @@ body {
   }
 }
 
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes travel {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(
+      calc((var(--end-x) - var(--start-x)) * 1px),
+      calc((var(--end-y) - var(--start-y)) * 1px)
+    );
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -69,4 +96,12 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.travel {
+  animation: travel 2s forwards;
 }
