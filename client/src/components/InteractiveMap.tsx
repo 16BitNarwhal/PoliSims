@@ -67,61 +67,38 @@ const App = () => {
   useEffect(() => {
     const pollMessages = async () => {
       try {
-        // const response = await fetch('http://localhost:3001/api/messages');
-        // const responseMessages = await response.json();
-        const responseMessages = [
-          {
-            sender: "Lumber_worker",
-            receiver: "Fishing_manager",
-            conversation_history: ["a", "b"],
-          },
-          {
-            sender: "Lumber_worker",
-            receiver: "Fishing_manager",
-            conversation_history: ["c", "d"],
-          },
-          {
-            sender: "Lumber_worker",
-            receiver: "Fishing_manager",
-            conversation_history: ["c", "d"],
-          },
-          {
-            sender: "Lumber_worker",
-            receiver: "Fishing_manager",
-            conversation_history: ["c", "d"],
-          },
-          {
-            sender: "Lumber_worker",
-            receiver: "Fishing_manager",
-            conversation_history: ["c", "d"],
-          },
-          {
-            sender: "Lumber_worker",
-            receiver: "Fishing_manager",
-            conversation_history: ["c", "d"],
-          }
-        ];
-        const newMessages = responseMessages.map(message => ({
-          sender: {
-            industry: message.sender.split('_')[0].toLowerCase(),
-            role: message.sender.split('_')[1].toLowerCase(),
-          },
-          receiver: {
-            industry: message.receiver.split('_')[0].toLowerCase(),
-            role: message.receiver.split('_')[1].toLowerCase(),
-          },
-          conversation_history: message.conversation_history as string[],
-        })) as Message[];
-        setMessages(newMessages);
+        const response = await fetch('http://127.0.0.1:5000/messages', {
+          headers: { 'Content-Type': 'application/json' },
+        });
+  
+        // Check if the response is okay
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+  
+        // Parse the response JSON
+        const jsonResponse = await response.json();
+  
+        // Ensure response contains the expected data structure
+        if (jsonResponse.status === 'success' && jsonResponse.data) {
+          const responseMessages = jsonResponse.data; // Extract the `data` field from the response
+  
+          console.log(responseMessages)
+  
+          // setMessages(newMessages); // Update state with the new messages
+        } else {
+          console.error('Unexpected response structure:', jsonResponse);
+        }
       } catch (error) {
         console.error('Error fetching messages:', error);
       }
     };
-
-    const intervalId = setInterval(pollMessages, 5000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+  
+    // Set up polling
+    const interval = setInterval(pollMessages, 1000); // Poll every second
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []); // Dependency array is empty to run only on mount
+  
 
   const handlePlay = () => {
     // Reset animation state if already animating

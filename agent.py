@@ -142,6 +142,13 @@ from typing import Dict, List
 import json
 import random
 from groq import Groq
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import time
+import requests
+
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 industries = ["Lumber", "Banking", "Fishing", "Gasoline", "Tech", "Insurance", "Grocery", "Transportation"]
 
@@ -174,7 +181,7 @@ class Agent:
         ONLY RETURN THE JSON DO NOT RETURN ANYTHING OUTSIDE OF THE JSON
         """
         response = self.talk_to_llama(client, prompt)
-        print(f"Response for {self.name}: {response}")  # Debug statement
+        # print(f"Response for {self.name}: {response}")  # Debug statement
         try:
             result = json.loads(response)
             self.most_affected_industries = result.get("affected_agents", [])
@@ -185,41 +192,16 @@ class Agent:
     def converse_with_agents(self, client: Groq, agents: List['Agent'], policy: str):
         effects = self.process_policy(client, policy)
         affected_agents = self.most_affected_industries
-        print(f"Affected agents for {self.name}: {affected_agents}")  # Debug statement
+        # print(f"Affected agents for {self.name}: {affected_agents}")  # Debug statement
         for agent in agents:
             if agent.industry in affected_agents and agent.id != self.id:
-                # Simulate a more realistic conversation
-                conversation = []
-
-                # Agent initiates the conversation
-                prompt = f"As a {self.status} in the {self.industry} industry, the policy has forced me to make tough decisions. How has it affected you?"
-                response = self.talk_to_llama(client, prompt)
-                conversation.append(f"{self.name} ({self.status}): {response}")
-
-                # Other agent responds
-                prompt = f"As a {agent.status} in the {agent.industry} industry, I've been impacted because {response}. How are you handling it?"
-                response = self.talk_to_llama(client, prompt)
-                conversation.append(f"{agent.name} ({agent.status}): {response}")
-
-                # Continue the conversation
-                prompt = f"{self.name} ({self.status}): It's been challenging. We've had to {response}. What about your plans?"
-                response = self.talk_to_llama(client, prompt)
-                conversation.append(f"{self.name} ({self.status}): {response}")
-
-                prompt = f"{agent.name} ({agent.status}): I'm considering {response}. Let's keep in touch."
-                response = self.talk_to_llama(client, prompt)
-                conversation.append(f"{agent.name} ({agent.status}): {response}")
-
-                self.conversation_history.append({
-                    "sender": [self.name, self.status],
-                    "receiver": [agent.name, agent.status],
-                    "conversation_history": conversation
-                })
-                agent.conversation_history.append({
-                    "sender": [self.name, self.status],
-                    "receiver": [agent.name, agent.status],
-                    "conversation_history": conversation
-                })
+                conversation = {
+                    "sender": self.name,
+                    "receiver": agent.name,
+                    "conversation_history": [f"Discussed impact of policy: {policy}"]
+                }
+                self.conversation_history.append(conversation)
+                agent.conversation_history.append(conversation)
 
 class PolicySimulation:
     def __init__(self, api_key: str):
@@ -228,7 +210,7 @@ class PolicySimulation:
 
     def create_agents(self):
         for industry in industries:
-            for status in ['decision_maker', 'worker']:
+            for status in ['decision_maker','manager', 'worker']:
                 about = {
                     "age": random.randint(25, 65),
                     "location": "Toronto, ON",
@@ -244,13 +226,31 @@ class PolicySimulation:
         for agent in self.agents:
             agent.converse_with_agents(self.client, self.agents, policy)
 
+@app.route("/messages", methods=["GET"])
+def fetch_messages():
+    if hasattr(sim, 'agents') and sim.agents:  # Check if `sim` and `agents` exist
+        reply = sim.agents[0].conversation_history  # Get conversation history
+        sim.agents.pop(0)  # Remove the processed agent
+        return jsonify({
+            "status": "success",
+            "message": "Conversation retrieved successfully.",
+            "data": reply
+        }), 200
+    else:
+        return jsonify({
+            "status": "error",
+            "message": "No agents available to provide conversation history.",
+            "data": []
+        }), 200  # Return 200 with an empty list to avoid frontend 404
+
+
 # Example usage
 if __name__ == "__main__":
-    sim = PolicySimulation(api_key="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")
+    sim = PolicySimulation(api_key="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")
     sim.create_agents()
     policy = "Universal Basic Income policy"
     sim.simulate_policy_impact(policy)
-    for agent in sim.agents:
-        print(f"Agent {agent.name} conversation history: {agent.conversation_history}")
-        print(f"Most affected industries for {agent.name}: {agent.most_affected_industries}")
+    # print(f"{sim.agents[0].conversation_history}")
+    # print(f"Most affected industries for {agent.name}: {agent.most_affected_industries}")
 
+    app.run(debug=True)
