@@ -3,7 +3,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import CanadaMap, { Provinces } from "react-canada-map";
 import { Sidebar } from "@/components/Sidebar";
-import { Person } from "@/types";
+import { Timeline } from "@/components/Timeline";
+import { Person, Message } from "@/types";
 
 const peoplePerProvince: Record<string, Person[]> = {
   "ON": [
@@ -19,14 +20,14 @@ const peoplePerProvince: Record<string, Person[]> = {
 };
 
 const industries = {
-  "Lumber": { position: { left: "10%", top: "50%" } }, // BC
-  "Banking": { position: { left: "50%", top: "70%" } }, // ON
-  "Fishing": { position: { left: "35%", top: "60%" } }, // MB
-  "Gasoline": { position: { left: "20%", top: "60%" } }, // AB
+  "Lumber": { position: { left: "8%", top: "40%" } }, // BC
+  "Banking": { position: { left: "49%", top: "61%" } }, // ON
+  "Fishing": { position: { left: "35%", top: "53%" } }, // MB
+  "Gasoline": { position: { left: "19%", top: "65%" } }, // AB
   "Tech": { position: { left: "59%", top: "80%" } }, // ON
-  "Insurance": { position: { left: "65%", top: "60%" } }, // QC
-  "Grocery": { position: { left: "60%", top: "65%" } }, // QC
-  "Transportation": { position: { left: "45%", top: "62%" } }, // ON
+  "Insurance": { position: { left: "56%", top: "45%" } }, // QC
+  "Grocery": { position: { left: "64%", top: "68%" } }, // QC
+  "Transportation": { position: { left: "41%", top: "70%" } }, // ON
 };
 
 const App = () => {
@@ -40,6 +41,49 @@ const App = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const mapContainerRef = useRef<HTMLDivElement>(null);
+
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    const pollMessages = async () => {
+      try {
+        // const response = await fetch('http://localhost:3001/api/messages');
+        // const responseMessages = await response.json();
+        const responseMessages = [
+          {
+            sender: "Lumber_worker",
+            receiver: "Fishing_manager",
+            conversation_history: ["c", "d"],
+          },
+          {
+            sender: "Lumber_worker",
+            receiver: "Fishing_manager",
+            conversation_history: ["a", "b"],
+          }
+        ];
+        const newMessages = responseMessages.map(message => ({
+          sender: {
+            industry: message.sender.split('_')[0].toLowerCase(),
+            role: message.sender.split('_')[1].toLowerCase(),
+          },
+          receiver: {
+            industry: message.receiver.split('_')[0].toLowerCase(),
+            role: message.receiver.split('_')[1].toLowerCase(),
+          },
+          conversation_history: message.conversation_history as string[],
+        })) as Message[];
+        setMessages(newMessages);
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+      }
+    };
+
+    const intervalId = setInterval(pollMessages, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const mapClickHandler = (province: string, event: React.MouseEvent) => {
     if (!isDragging) {

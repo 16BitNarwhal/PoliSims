@@ -7,3 +7,15 @@ export type Person = {
     address: string;
     pfpUrl: string;
 };
+
+export type Message = {
+    sender: {
+        industry: string;
+        role: string;
+    };
+    receiver: {
+        industry: string;
+        role: string;
+    };
+    conversation_history: string[];
+}
