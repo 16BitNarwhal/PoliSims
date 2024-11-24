@@ -6,6 +6,7 @@ from typing import Dict, Optional
 
 logger = logging.getLogger(__name__)
 
+
 class PolicyScraper:
     """Simple scraper for Canadian Parliamentary bills using the OpenParliament API."""
 
@@ -22,8 +23,7 @@ class PolicyScraper:
             ssl_context = ssl.create_default_context(cafile=certifi.where())
             connector = aiohttp.TCPConnector(ssl=ssl_context)
             self.session = aiohttp.ClientSession(
-                connector=connector,
-                headers=self.headers
+                connector=connector, headers=self.headers
             )
         return self
 
@@ -38,17 +38,14 @@ class PolicyScraper:
             if not self.session:
                 await self.__aenter__()
 
-            params = {
-                "format": "json",
-                "limit": "10000"
-            }
+            params = {"format": "json", "limit": "10000"}
             async with self.session.get(self.base_url, params=params) as response:
                 if response.status == 200:
                     return await response.json()
                 else:
                     logger.error(f"API request failed with status {response.status}")
                     return None
-                    
+
         except Exception as e:
             logger.error(f"Error fetching bills: {str(e)}")
             return None

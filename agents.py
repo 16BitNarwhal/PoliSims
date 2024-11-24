@@ -37,7 +37,7 @@ class Agent:
         )
 
         response = response.choices[0].message.content
-        response = response.replace('```', '').strip()
+        response = response.replace("```", "").strip()
 
         try:
             result = json.loads(response)
@@ -125,14 +125,17 @@ def main():
     print(f"Overall Support Level: {results['overall_support']:.2f}")
     print(f"Average Happiness Impact: {results['avg_happiness_impact']:.2f}")
     print(f"Average Income Change: {results['avg_income_change']:.2f}%")
-    
-    for result in results['detailed_results']:
+
+    for result in results["detailed_results"]:
         print(f"\nAgent {result['agent_id']}:")
         print(f"Characteristics: {result['about']}")
         print(f"Support Level: {result['response']['support_level']:.2f}")
         print(f"Happiness Impact: {result['response']['happiness_impact']:.2f}")
-        print(f"Income Change: {result['response']['expected_income_change_percent']:.2f}%")
+        print(
+            f"Income Change: {result['response']['expected_income_change_percent']:.2f}%"
+        )
         print(f"Opinion: {result['response']['opinion']}")
+
 
 if __name__ == "__main__":
     main()

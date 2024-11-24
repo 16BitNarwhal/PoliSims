@@ -272,7 +272,7 @@ const App = () => {
 	}, [transform]);
 
 	return (
-		<>
+    <div>
 			<div className="fixed top-0 left-0 right-0 bg-white shadow-md p-4 z-50 flex items-center justify-between">
 				<div className="flex items-center gap-3">
 					<h1 className="text-3xl font-bold text-green-700">PoliSims</h1>
@@ -488,7 +488,7 @@ const App = () => {
 				onIndexChange={setCurrentMessageIndex}
 				onPlay={handlePlay}
 			/>
-		</>
+		</div>
 	);
 };
 

@@ -20,6 +20,7 @@ app.include_router(industry_router)
 app.include_router(population_router)
 app.include_router(bills_router)
 
+
 @app.get("/")
 async def root():
     return {"message": "Welcome to PoliSims Backend API"}
