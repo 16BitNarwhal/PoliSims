@@ -10,6 +10,7 @@ router = APIRouter(prefix="")  # Empty prefix to maintain original URLs
 
 class IndustryRequest(BaseModel):
     industry: str
+    role: str
 
 
 class IndustryMetrics(BaseModel):
@@ -25,7 +26,7 @@ async def get_industry_metrics(request: IndustryRequest):
         client = groq.Groq(api_key=os.getenv("GROQ_API_KEY"))
 
         # Construct the prompt for Groq
-        prompt = f"""You are a data analysis system that ONLY outputs numbers. For the {request.industry} industry, output exactly 4 numbers in this format:
+        prompt = f"""You are a data analysis system that ONLY outputs numbers. For the {request.role} role in the {request.industry} industry, output exactly 4 numbers in this format:
 
         [average annual income in CAD], [employment rate], [growth rate], [job satisfaction out of 10]
 

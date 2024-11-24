@@ -7,13 +7,13 @@ Name: An Act to amend the Employment Insurance Act and the Employment Insurance 
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.1% (Modest positive impact from increased labor market stability)
-Unemployment: -0.3% (Improved employment insurance coverage)
-Inflation: 0% (Negligible impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.2% (Better income security for seasonal workers)
-Homelessness: -0.1% (Slightly reduced risk through income stability)
-Happiness: +0.4% (Increased financial security for workers)
+GDP: +0.142% (Modest positive impact from increased labor market stability)
+Unemployment: -0.312% (Improved employment insurance coverage)
+Inflation: 0.000% (Negligible impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.231% (Better income security for seasonal workers)
+Homelessness: -0.142% (Slightly reduced risk through income stability)
+Happiness: +0.423% (Increased financial security for workers)
 --------------------------------------------------
 Bill Number: C-3
 Session: 37-1
@@ -22,13 +22,13 @@ Name: An Act to amend the Eldorado Nuclear Limited Reorganization and Divestitur
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Improved energy sector efficiency)
-Unemployment: -0.1% (Minor job creation in energy sector)
-Inflation: +0.1% (Minimal impact on energy prices)
-Interest Rates: 0% (No significant impact)
-Incomes: +0.1% (Slight increase in energy sector wages)
-Homelessness: 0% (No direct impact)
-Happiness: +0.1% (Marginal improvement in energy sector stability)
+GDP: +0.231% (Improved energy sector efficiency)
+Unemployment: -0.142% (Minor job creation in energy sector)
+Inflation: +0.123% (Minimal impact on energy prices)
+Interest Rates: 0.000% (No significant impact)
+Incomes: +0.132% (Slight increase in energy sector wages)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.142% (Marginal improvement in energy sector stability)
 --------------------------------------------------
 Bill Number: C-4
 Session: 37-1
@@ -37,13 +37,13 @@ Name: An Act to establish a foundation to fund sustainable development technolog
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.4% (Innovation and technology development)
-Unemployment: -0.2% (New jobs in sustainable tech)
-Inflation: -0.1% (Lower energy costs long-term)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.3% (New high-skill job creation)
-Homelessness: 0% (No direct impact)
-Happiness: +0.3% (Environmental benefits)
+GDP: +0.423% (Innovation and technology development)
+Unemployment: -0.231% (New jobs in sustainable tech)
+Inflation: -0.142% (Lower energy costs long-term)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.312% (New high-skill job creation)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.324% (Environmental benefits)
 --------------------------------------------------
 Bill Number: C-5
 Session: 37-2
@@ -52,13 +52,13 @@ Name: An Act respecting the protection of wildlife species at risk in Canada
 Law: True
 
 Economic and Social Impacts:
-GDP: -0.1% (Short-term costs of species protection)
-Unemployment: 0% (Minimal employment impact)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: -0.1% (Minor restrictions on resource development)
-Homelessness: 0% (No direct impact)
-Happiness: +0.5% (Environmental preservation benefits)
+GDP: -0.142% (Short-term costs of species protection)
+Unemployment: 0.000% (Minimal employment impact)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: -0.132% (Minor restrictions on resource development)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.523% (Environmental preservation benefits)
 --------------------------------------------------
 Bill Number: C-5
 Session: 37-1
@@ -67,13 +67,13 @@ Name: An Act respecting the protection of wildlife species at risk in Canada
 Law: True
 
 Economic and Social Impacts:
-GDP: -0.1% (Short-term costs of wildlife protection measures)
-Unemployment: +0.1% (Job losses in affected industries)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: -0.1% (Reduced economic activity in certain sectors)
-Homelessness: 0% (No direct impact)
-Happiness: +0.4% (Increased satisfaction from environmental conservation)
+GDP: -0.132% (Short-term costs of wildlife protection measures)
+Unemployment: +0.142% (Job losses in affected industries)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: -0.123% (Reduced economic activity in certain sectors)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.412% (Increased satisfaction from environmental conservation)
 --------------------------------------------------
 Bill Number: C-6
 Session: 37-1
@@ -82,13 +82,13 @@ Name: An Act to amend the International Boundary Waters Treaty Act
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.1% (Improved water resource management)
-Unemployment: 0% (No significant impact)
-Inflation: 0% (No direct impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Minor benefits to water-dependent industries)
-Homelessness: 0% (No direct impact)
-Happiness: +0.2% (Better environmental protection)
+GDP: +0.142% (Improved water resource management)
+Unemployment: 0.000% (No significant impact)
+Inflation: 0.000% (No direct impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.123% (Minor benefits to water-dependent industries)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.213% (Better environmental protection)
 --------------------------------------------------
 Bill Number: C-7
 Session: 37-1
@@ -97,13 +97,13 @@ Name: An Act in respect of criminal justice for young persons and to amend and r
 Law: True
 
 Economic and Social Impacts:
-GDP: -0.1% (Increased youth justice system costs)
-Unemployment: -0.1% (More youth rehabilitation programs)
-Inflation: 0% (No direct impact)
-Interest Rates: 0% (No direct impact)
-Incomes: 0% (Minimal overall impact)
-Homelessness: -0.2% (Better youth support systems)
-Happiness: +0.3% (Improved youth rehabilitation)
+GDP: -0.132% (Increased youth justice system costs)
+Unemployment: -0.142% (More youth rehabilitation programs)
+Inflation: 0.000% (No direct impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: 0.000% (Minimal overall impact)
+Homelessness: -0.213% (Better youth support systems)
+Happiness: +0.324% (Improved youth rehabilitation)
 --------------------------------------------------
 Bill Number: C-8
 Session: 37-1
@@ -112,13 +112,13 @@ Name: An Act to establish the Financial Consumer Agency of Canada and to amend c
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Improved financial system stability)
-Unemployment: 0% (No significant impact)
-Inflation: -0.1% (Better financial oversight)
-Interest Rates: -0.1% (More efficient financial markets)
-Incomes: +0.1% (Consumer protection benefits)
-Homelessness: -0.1% (Better financial protection)
-Happiness: +0.3% (Increased financial security)
+GDP: +0.231% (Improved financial system stability)
+Unemployment: 0.000% (No significant impact)
+Inflation: -0.142% (Better financial oversight)
+Interest Rates: -0.123% (More efficient financial markets)
+Incomes: +0.132% (Consumer protection benefits)
+Homelessness: -0.142% (Better financial protection)
+Happiness: +0.312% (Increased financial security)
 --------------------------------------------------
 Bill Number: C-9
 Session: 37-1
@@ -127,13 +127,13 @@ Name: An Act to amend the Canada Elections Act and the Electoral Boundaries Read
 Law: True
 
 Economic and Social Impacts:
-GDP: 0% (No direct economic impact)
-Unemployment: 0% (No significant impact)
-Inflation: 0% (No direct impact)
-Interest Rates: 0% (No direct impact)
-Incomes: 0% (No direct impact)
-Homelessness: 0% (No direct impact)
-Happiness: +0.2% (Improved democratic representation)
+GDP: 0.000% (No direct economic impact)
+Unemployment: 0.000% (No significant impact)
+Inflation: 0.000% (No direct impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: 0.000% (No direct impact)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.213% (Improved democratic representation)
 --------------------------------------------------
 Bill Number: C-10
 Session: 37-1
@@ -142,13 +142,13 @@ Name: An Act respecting the national marine conservation areas of Canada
 Law: True
 
 Economic and Social Impacts:
-GDP: -0.1% (Short-term marine industry restrictions)
-Unemployment: -0.1% (New conservation jobs)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Tourism sector growth)
-Homelessness: 0% (No direct impact)
-Happiness: +0.4% (Environmental preservation)
+GDP: -0.132% (Short-term marine industry restrictions)
+Unemployment: -0.142% (New conservation jobs)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.123% (Tourism sector growth)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.423% (Environmental preservation)
 --------------------------------------------------
 Bill Number: C-11
 Session: 37-1
@@ -157,13 +157,13 @@ Name: An Act respecting immigration to Canada and the granting of refugee protec
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.3% (Increased workforce and skills)
-Unemployment: -0.2% (Labor market expansion)
-Inflation: +0.1% (Minor demand increase)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Labor market dynamics)
-Homelessness: +0.1% (Initial settlement challenges)
-Happiness: +0.3% (Humanitarian benefits)
+GDP: +0.312% (Increased workforce and skills)
+Unemployment: -0.231% (Labor market expansion)
+Inflation: +0.132% (Minor demand increase)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.142% (Labor market dynamics)
+Homelessness: +0.123% (Initial settlement challenges)
+Happiness: +0.324% (Humanitarian benefits)
 --------------------------------------------------
 Bill Number: C-12
 Session: 37-1
@@ -172,13 +172,13 @@ Name: An Act to amend the Judges Act and to amend another Act in consequence
 Law: True
 
 Economic and Social Impacts:
-GDP: 0% (No direct economic impact)
-Unemployment: 0% (No significant impact)
-Inflation: 0% (No direct impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Judicial compensation adjustments)
-Homelessness: 0% (No direct impact)
-Happiness: +0.1% (Improved judicial system)
+GDP: 0.000% (No direct economic impact)
+Unemployment: 0.000% (No significant impact)
+Inflation: 0.000% (No direct impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.132% (Judicial compensation adjustments)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.142% (Improved judicial system)
 --------------------------------------------------
 Bill Number: C-13
 Session: 37-1
@@ -187,13 +187,13 @@ Name: An Act to amend the Excise Tax Act
 Law: True
 
 Economic and Social Impacts:
-GDP: -0.1% (Tax adjustment effects)
-Unemployment: 0% (No significant impact)
-Inflation: +0.1% (Minor price adjustments)
-Interest Rates: 0% (No direct impact)
-Incomes: -0.1% (Tax burden changes)
-Homelessness: 0% (No direct impact)
-Happiness: -0.1% (Tax-related stress)
+GDP: -0.142% (Tax adjustment effects)
+Unemployment: 0.000% (No significant impact)
+Inflation: +0.132% (Minor price adjustments)
+Interest Rates: 0.000% (No direct impact)
+Incomes: -0.123% (Tax burden changes)
+Homelessness: 0.000% (No direct impact)
+Happiness: -0.132% (Tax-related stress)
 --------------------------------------------------
 Bill Number: C-14
 Session: 37-1
@@ -202,13 +202,13 @@ Name: An Act respecting shipping and navigation and to amend the Shipping Confer
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Maritime sector efficiency)
-Unemployment: -0.1% (Maritime job creation)
-Inflation: -0.1% (Reduced shipping costs)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Maritime sector wages)
-Homelessness: 0% (No direct impact)
-Happiness: +0.1% (Maritime safety improvements)
+GDP: +0.231% (Maritime sector efficiency)
+Unemployment: -0.142% (Maritime job creation)
+Inflation: -0.123% (Reduced shipping costs)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.132% (Maritime sector wages)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.142% (Maritime safety improvements)
 --------------------------------------------------
 Bill Number: C-17
 Session: 37-1
@@ -217,13 +217,13 @@ Name: An Act to amend the Budget Implementation Act, 1997 and the Financial Admi
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Improved fiscal management)
-Unemployment: 0% (No direct impact)
-Inflation: -0.1% (Better financial controls)
-Interest Rates: -0.1% (Enhanced fiscal stability)
-Incomes: +0.1% (Government efficiency savings)
-Homelessness: 0% (No direct impact)
-Happiness: +0.1% (Better public services)
+GDP: +0.231% (Improved fiscal management)
+Unemployment: 0.000% (No direct impact)
+Inflation: -0.132% (Better financial controls)
+Interest Rates: -0.123% (Enhanced fiscal stability)
+Incomes: +0.142% (Government efficiency savings)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.132% (Better public services)
 --------------------------------------------------
 Bill Number: C-18
 Session: 37-1
@@ -232,13 +232,13 @@ Name: An Act to amend the Federal-Provincial Fiscal Arrangements Act
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.3% (Improved federal-provincial coordination)
-Unemployment: -0.1% (Better resource allocation)
-Inflation: 0% (No significant impact)
-Interest Rates: -0.1% (Enhanced fiscal stability)
-Incomes: +0.2% (More efficient public services)
-Homelessness: -0.1% (Better provincial support programs)
-Happiness: +0.2% (Improved public services)
+GDP: +0.312% (Improved federal-provincial coordination)
+Unemployment: -0.142% (Better resource allocation)
+Inflation: 0.000% (No significant impact)
+Interest Rates: -0.123% (Enhanced fiscal stability)
+Incomes: +0.231% (More efficient public services)
+Homelessness: -0.132% (Better provincial support programs)
+Happiness: +0.213% (Improved public services)
 --------------------------------------------------
 Bill Number: C-20
 Session: 37-1
@@ -247,13 +247,13 @@ Name: An Act for granting to Her Majesty certain sums of money for the public se
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Public service funding impact)
-Unemployment: -0.1% (Public sector employment)
-Inflation: +0.1% (Government spending effect)
-Interest Rates: 0% (No significant impact)
-Incomes: +0.1% (Public service wages)
-Homelessness: -0.1% (Social service funding)
-Happiness: +0.2% (Improved public services)
+GDP: +0.231% (Public service funding impact)
+Unemployment: -0.132% (Public sector employment)
+Inflation: +0.123% (Government spending effect)
+Interest Rates: 0.000% (No significant impact)
+Incomes: +0.142% (Public service wages)
+Homelessness: -0.123% (Social service funding)
+Happiness: +0.213% (Improved public services)
 --------------------------------------------------
 Bill Number: C-21
 Session: 37-1
@@ -262,13 +262,13 @@ Name: An Act for granting to Her Majesty certain sums of money for the public se
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.3% (Annual public service funding)
-Unemployment: -0.2% (Public sector job creation)
-Inflation: +0.1% (Government spending effect)
-Interest Rates: 0% (No significant impact)
-Incomes: +0.2% (Public service compensation)
-Homelessness: -0.2% (Enhanced social programs)
-Happiness: +0.3% (Better government services)
+GDP: +0.312% (Annual public service funding)
+Unemployment: -0.231% (Public sector job creation)
+Inflation: +0.132% (Government spending effect)
+Interest Rates: 0.000% (No significant impact)
+Incomes: +0.231% (Public service compensation)
+Homelessness: -0.213% (Enhanced social programs)
+Happiness: +0.324% (Better government services)
 --------------------------------------------------
 Bill Number: C-22
 Session: 37-1
@@ -277,13 +277,13 @@ Name: An Act to amend the Income Tax Act, the Income Tax Application Rules, cert
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.4% (Comprehensive tax reform effects)
-Unemployment: -0.2% (Tax incentives for job creation)
-Inflation: +0.2% (Tax policy adjustments)
-Interest Rates: +0.1% (Fiscal policy impact)
-Incomes: +0.3% (Tax benefits and pension changes)
-Homelessness: -0.2% (Enhanced social benefits)
-Happiness: +0.2% (Modernized benefits system)
+GDP: +0.423% (Comprehensive tax reform effects)
+Unemployment: -0.231% (Tax incentives for job creation)
+Inflation: +0.213% (Tax policy adjustments)
+Interest Rates: +0.132% (Fiscal policy impact)
+Incomes: +0.312% (Tax benefits and pension changes)
+Homelessness: -0.213% (Enhanced social benefits)
+Happiness: +0.231% (Modernized benefits system)
 --------------------------------------------------
 Bill Number: C-23
 Session: 37-1
@@ -292,13 +292,13 @@ Name: An Act to amend the Competition Act and the Competition Tribunal Act
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.3% (Enhanced market competition)
-Unemployment: -0.1% (Business growth opportunities)
-Inflation: -0.2% (Competitive pricing effects)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.2% (Market efficiency benefits)
-Homelessness: 0% (No direct impact)
-Happiness: +0.2% (Better consumer choices)
+GDP: +0.312% (Enhanced market competition)
+Unemployment: -0.132% (Business growth opportunities)
+Inflation: -0.213% (Competitive pricing effects)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.231% (Market efficiency benefits)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.213% (Better consumer choices)
 --------------------------------------------------
 Bill Number: C-24
 Session: 37-1
@@ -307,13 +307,13 @@ Name: An Act to amend the Criminal Code (organized crime and law enforcement) an
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Reduced organized crime costs)
-Unemployment: 0% (No significant impact)
-Inflation: 0% (No direct impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Better business environment)
-Homelessness: -0.1% (Reduced crime victimization)
-Happiness: +0.4% (Improved public safety)
+GDP: +0.231% (Reduced organized crime costs)
+Unemployment: 0.000% (No significant impact)
+Inflation: 0.000% (No direct impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.132% (Better business environment)
+Homelessness: -0.123% (Reduced crime victimization)
+Happiness: +0.423% (Improved public safety)
 --------------------------------------------------
 Bill Number: C-25
 Session: 37-1
@@ -322,13 +322,13 @@ Name: An Act to amend the Farm Credit Corporation Act and to make consequential 
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Agricultural sector growth)
-Unemployment: -0.2% (Rural job creation)
-Inflation: -0.1% (Stable food production)
-Interest Rates: -0.1% (Better farm credit access)
-Incomes: +0.3% (Improved farm viability)
-Homelessness: -0.1% (Rural economic stability)
-Happiness: +0.3% (Agricultural community support)
+GDP: +0.231% (Agricultural sector growth)
+Unemployment: -0.213% (Rural job creation)
+Inflation: -0.132% (Stable food production)
+Interest Rates: -0.123% (Better farm credit access)
+Incomes: +0.312% (Improved farm viability)
+Homelessness: -0.132% (Rural economic stability)
+Happiness: +0.324% (Agricultural community support)
 --------------------------------------------------
 Bill Number: C-26
 Session: 37-1
@@ -337,13 +337,13 @@ Name: An Act to amend the Customs Act, the Customs Tariff, the Excise Act, the E
 Law: True
 
 Economic and Social Impacts:
-GDP: -0.1% (Reduced tobacco industry activity)
-Unemployment: +0.1% (Tobacco sector job losses)
-Inflation: +0.1% (Tobacco price increases)
-Interest Rates: 0% (No direct impact)
-Incomes: -0.1% (Tobacco industry impact)
-Homelessness: 0% (No direct impact)
-Happiness: +0.3% (Public health benefits)
+GDP: -0.132% (Reduced tobacco industry activity)
+Unemployment: +0.123% (Tobacco sector job losses)
+Inflation: +0.132% (Tobacco price increases)
+Interest Rates: 0.000% (No direct impact)
+Incomes: -0.123% (Tobacco industry impact)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.312% (Public health benefits)
 --------------------------------------------------
 Bill Number: C-27
 Session: 37-1
@@ -352,13 +352,13 @@ Name: An Act respecting the long-term management of nuclear fuel waste
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Nuclear industry stability)
-Unemployment: -0.1% (Waste management jobs)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.2% (High-skill job creation)
-Homelessness: 0% (No direct impact)
-Happiness: +0.3% (Environmental safety)
+GDP: +0.231% (Nuclear industry stability)
+Unemployment: -0.132% (Waste management jobs)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.213% (High-skill job creation)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.312% (Environmental safety)
 --------------------------------------------------
 Bill Number: C-28
 Session: 37-1
@@ -367,13 +367,13 @@ Name: An Act to amend the Parliament of Canada Act, the Members of Parliament Re
 Law: True
 
 Economic and Social Impacts:
-GDP: 0% (Minimal economic impact)
-Unemployment: 0% (No direct impact)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (MP compensation adjustments)
-Homelessness: 0% (No direct impact)
-Happiness: -0.1% (Public perception of MP benefits)
+GDP: 0.000% (Minimal economic impact)
+Unemployment: 0.000% (No direct impact)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.132% (MP compensation adjustments)
+Homelessness: 0.000% (No direct impact)
+Happiness: -0.123% (Public perception of MP benefits)
 --------------------------------------------------
 Bill Number: C-29
 Session: 37-1
@@ -382,13 +382,13 @@ Name: An Act for granting to Her Majesty certain sums of money for the public se
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.3% (Public service expenditure)
-Unemployment: -0.2% (Public sector employment)
-Inflation: +0.1% (Government spending effect)
-Interest Rates: 0% (No significant impact)
-Incomes: +0.2% (Public service wages)
-Homelessness: -0.2% (Social program funding)
-Happiness: +0.3% (Improved public services)
+GDP: +0.312% (Public service expenditure)
+Unemployment: -0.231% (Public sector employment)
+Inflation: +0.132% (Government spending effect)
+Interest Rates: 0.000% (No significant impact)
+Incomes: +0.213% (Public service wages)
+Homelessness: -0.213% (Social program funding)
+Happiness: +0.324% (Improved public services)
 --------------------------------------------------
 Bill Number: C-30
 Session: 37-1
@@ -397,13 +397,13 @@ Name: An Act to establish a body that provides administrative services to the Fe
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.1% (Improved judicial efficiency)
-Unemployment: 0% (Minor administrative jobs)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Court staff adjustments)
-Homelessness: 0% (No direct impact)
-Happiness: +0.2% (Better judicial services)
+GDP: +0.142% (Improved judicial efficiency)
+Unemployment: 0.000% (Minor administrative jobs)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.123% (Court staff adjustments)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.213% (Better judicial services)
 --------------------------------------------------
 Bill Number: C-31
 Session: 37-1
@@ -412,13 +412,13 @@ Name: An Act to amend the Export Development Act and to make consequential amend
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.4% (Enhanced export capabilities)
-Unemployment: -0.3% (Export industry growth)
-Inflation: -0.1% (International trade benefits)
-Interest Rates: -0.1% (Trade financing improvements)
-Incomes: +0.3% (Export sector wages)
-Homelessness: 0% (No direct impact)
-Happiness: +0.2% (Economic opportunity growth)
+GDP: +0.423% (Enhanced export capabilities)
+Unemployment: -0.312% (Export industry growth)
+Inflation: -0.132% (International trade benefits)
+Interest Rates: -0.123% (Trade financing improvements)
+Incomes: +0.312% (Export sector wages)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.213% (Economic opportunity growth)
 --------------------------------------------------
 Bill Number: C-32
 Session: 37-1
@@ -427,13 +427,13 @@ Name: An Act to implement the Free Trade Agreement between the Government of Can
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Trade expansion benefits)
-Unemployment: -0.1% (Trade-related jobs)
-Inflation: -0.1% (Lower import costs)
-Interest Rates: 0% (No significant impact)
-Incomes: +0.2% (Trade sector growth)
-Homelessness: 0% (No direct impact)
-Happiness: +0.2% (Economic opportunities)
+GDP: +0.231% (Trade expansion benefits)
+Unemployment: -0.132% (Trade-related jobs)
+Inflation: -0.123% (Lower import costs)
+Interest Rates: 0.000% (No significant impact)
+Incomes: +0.213% (Trade sector growth)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.213% (Economic opportunities)
 --------------------------------------------------
 Bill Number: C-33
 Session: 37-1
@@ -442,13 +442,13 @@ Name: An Act respecting the water resources of Nunavut and the Nunavut Surface R
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.1% (Northern resource management)
-Unemployment: -0.2% (Indigenous employment)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.2% (Northern communities)
-Homelessness: -0.1% (Indigenous housing)
-Happiness: +0.4% (Indigenous rights)
+GDP: +0.142% (Northern resource management)
+Unemployment: -0.213% (Indigenous employment)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.213% (Northern communities)
+Homelessness: -0.132% (Indigenous housing)
+Happiness: +0.423% (Indigenous rights)
 --------------------------------------------------
 Bill Number: C-34
 Session: 37-1
@@ -457,13 +457,13 @@ Name: An Act to establish the Transportation Appeal Tribunal of Canada and to ma
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.1% (Transport sector efficiency)
-Unemployment: 0% (Minor tribunal jobs)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Transport sector stability)
-Homelessness: 0% (No direct impact)
-Happiness: +0.2% (Better transport justice)
+GDP: +0.132% (Transport sector efficiency)
+Unemployment: 0.000% (Minor tribunal jobs)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.123% (Transport sector stability)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.213% (Better transport justice)
 --------------------------------------------------
 Bill Number: C-35
 Session: 37-1
@@ -472,13 +472,13 @@ Name: An Act to amend the Foreign Missions and International Organizations Act
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.1% (International relations)
-Unemployment: 0% (Diplomatic sector jobs)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Diplomatic sector)
-Homelessness: 0% (No direct impact)
-Happiness: +0.1% (International cooperation)
+GDP: +0.132% (International relations)
+Unemployment: 0.000% (Diplomatic sector jobs)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.123% (Diplomatic sector)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.132% (International cooperation)
 --------------------------------------------------
 Bill Number: C-36
 Session: 37-1
@@ -487,13 +487,13 @@ Name: An Act to amend the Criminal Code, the Official Secrets Act, the Canada Ev
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Enhanced security measures)
-Unemployment: -0.1% (Security sector jobs)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.1% (Security industry growth)
-Homelessness: 0% (No direct impact)
-Happiness: +0.3% (Improved public safety)
+GDP: +0.231% (Enhanced security measures)
+Unemployment: -0.132% (Security sector jobs)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.123% (Security industry growth)
+Homelessness: 0.000% (No direct impact)
+Happiness: +0.312% (Improved public safety)
 --------------------------------------------------
 Bill Number: C-37
 Session: 37-1
@@ -502,11 +502,10 @@ Name: An Act to facilitate the implementation of those provisions of first natio
 Law: True
 
 Economic and Social Impacts:
-GDP: +0.2% (Indigenous economic development)
-Unemployment: -0.3% (First Nations employment)
-Inflation: 0% (No significant impact)
-Interest Rates: 0% (No direct impact)
-Incomes: +0.3% (Indigenous communities)
-Homelessness: -0.2% (Reserve housing)
-Happiness: +0.5% (Indigenous rights and land)
---------------------------------------------------
+GDP: +0.231% (Indigenous economic development)
+Unemployment: -0.312% (First Nations employment)
+Inflation: 0.000% (No significant impact)
+Interest Rates: 0.000% (No direct impact)
+Incomes: +0.312% (Indigenous communities)
+Homelessness: -0.213% (Reserve housing)
+Happiness: +0.523% (Indigenous rights and land)
