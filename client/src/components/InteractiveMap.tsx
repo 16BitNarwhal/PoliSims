@@ -267,9 +267,6 @@ const App = () => {
             if (!response.ok) {
               throw new Error(`Error: ${response.statusText}`);
             }
-
-            const data = await response.json();
-            console.log("Analysis result:", data);
         } catch (error) {
             console.error("Failed to analyze policy:", error);
         }
