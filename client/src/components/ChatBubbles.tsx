@@ -22,11 +22,12 @@ export const ChatBubbles: React.FC<ChatBubblesProps> = ({ messages, isOpen, onCl
     <div 
       className="fixed bg-white rounded-lg shadow-lg p-4 w-96 h-[300px] flex flex-col"
       style={{
-        left: `calc(${position.left} + 550px)`,
+        left: `calc(${position.left} + 50px)`,
         top: `calc(${position.top} - 50px)`,
         transform: 'translate(0, -100%)',
         zIndex: 2000
       }}
+      onWheel={(e) => e.stopPropagation()}
     >
       <button 
         onClick={onClose}
@@ -44,7 +45,7 @@ export const ChatBubbles: React.FC<ChatBubblesProps> = ({ messages, isOpen, onCl
           To: {currentMessage.receiver.role}
         </div>
       </div>
-      <div className="space-y-4 overflow-y-auto flex-grow pr-2">
+      <div className="space-y-4 overflow-y-auto flex-grow pr-2" onWheel={(e) => e.stopPropagation()}>
         {currentMessage.conversation_history.map((message, index) => (
           <div 
             key={index} 
