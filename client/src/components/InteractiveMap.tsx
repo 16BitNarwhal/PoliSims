@@ -48,6 +48,15 @@ const getIndustryPosition = (industryName: string) => {
 	);
 };
 
+const policyOptions = [
+  "Bill 226, Fixing Tribunals Backlogs Act, 2024",
+	"Bill 225, Resource Recovery and Circular Economy Amendment Act (Beverage Container Deposit Program), 2024",
+	"Bill 224, Safer Driving Tests Act (Ending the Privatization Failure), 2024",
+	"Bill 223, Safer Streets, Stronger Communities Act, 2024",
+	"Bill 222, Heat Stress Act, 2024",
+	"Bill 221, Day of Reflection for Indian Residential Schools Act, 2024",
+];
+
 const App = () => {
 	const [provinceSelected, setProvinceSelected] = useState("");
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -66,6 +75,7 @@ const App = () => {
 	const [mailPosition, setMailPosition] = useState({ left: "0%", top: "0%" });
 	const [showMail, setShowMail] = useState(false);
 	const [policy, setPolicy] = useState("");
+	const [showPolicyOptions, setShowPolicyOptions] = useState(false);
 
 	useEffect(() => {
 		const pollMessages = async () => {
@@ -260,13 +270,40 @@ const App = () => {
 					/>
 				</div>
 				<div className="flex-grow mx-8 max-w-2xl">
-					<input
-						type="text"
-						placeholder="Enter a policy to analyze (e.g., 'Universal Basic Income policy')"
-						value={policy}
-						onChange={(e) => setPolicy(e.target.value)}
-						className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-					/>
+					<div className="relative">
+						<input
+							type="text"
+							placeholder="Enter or select a policy to analyze"
+							value={policy}
+							onChange={(e) => setPolicy(e.target.value)}
+							onFocus={() => setShowPolicyOptions(true)}
+							className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+						/>
+						{showPolicyOptions && (
+							<>
+								<div 
+									className="absolute w-full mt-1 max-h-60 overflow-y-auto bg-white border rounded-lg shadow-lg z-50"
+								>
+									{policyOptions.map((option) => (
+										<div
+											key={option}
+											className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+											onClick={() => {
+												setPolicy(option);
+												setShowPolicyOptions(false);
+											}}
+										>
+											{option}
+										</div>
+									))}
+								</div>
+								<div
+									className="fixed inset-0 z-40"
+									onClick={() => setShowPolicyOptions(false)}
+								/>
+							</>
+						)}
+					</div>
 				</div>
 				<button
 					onClick={() => {
