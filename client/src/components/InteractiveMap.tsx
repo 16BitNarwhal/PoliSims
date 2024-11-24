@@ -5,6 +5,7 @@ import CanadaMap, { Provinces } from "react-canada-map";
 import { Sidebar } from "@/components/Sidebar";
 import { Timeline } from "@/components/Timeline";
 import { Person, Message } from "@/types";
+import { ChatBubbles } from "@/components/ChatBubbles";
 
 interface PeoplePerProvince {
   [province: string]: Person[];
@@ -61,6 +62,7 @@ const App = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [mailPosition, setMailPosition] = useState({ left: "0%", top: "0%" });
   const [showMail, setShowMail] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     const pollMessages = async () => {
@@ -154,18 +156,19 @@ const App = () => {
               mailElement.style.left = receiverPosition.left;
               mailElement.style.top = receiverPosition.top;
               
+              // Wait longer at receiver's position (3 seconds total)
               setTimeout(() => {
                 setShowMail(false);
                 resolve();
-              }, 1000);
+              }, 2000); // Increased from 1000 to 3000
             } else {
               resolve();
             }
           });
         }
 
-        // Wait additional second before next message
-        setTimeout(() => animateMessages(index + 1), 1000);
+        // Increased delay before next message to account for longer display time
+        setTimeout(() => animateMessages(index + 1), 1000); // Increased from 1000 to 4000
       } else {
         setIsAnimating(false);
         setShowMail(false);
@@ -305,7 +308,12 @@ const App = () => {
                   top: mailPosition.top,
                   transform: 'translate(-50%, -50%)',
                   zIndex: 1000,
-                  transition: 'left 1s ease-in-out, top 1s ease-in-out'
+                  transition: 'left 1s ease-in-out, top 1s ease-in-out',
+                  cursor: 'pointer'
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowChat(true);
                 }}
               >
                 <img
@@ -315,6 +323,12 @@ const App = () => {
                 />
               </div>
             )}
+            <ChatBubbles
+              messages={messages.slice(0, currentMessageIndex + 1)}
+              isOpen={showChat}
+              onClose={() => setShowChat(false)}
+              position={mailPosition}
+            />
             {Object.keys(industries).map((industry, index) => (
               <div
                 key={index}

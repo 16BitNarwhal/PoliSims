@@ -17,9 +17,9 @@ export const Timeline: React.FC<TimelineProps> = ({ currentIndex, totalMessages,
         value={currentIndex}
         step={1}
         onChange={(e) => onIndexChange(Number(e.target.value))}
-        className="flex-grow"
+        className="flex-grow mr-4"
       />
-      <button onClick={onPlay} className="px-4 py-2 bg-blue-500 text-white rounded">
+      <button onClick={onPlay} className="px-4 py-2 bg-blue-500 text-white font-bold rounded">
         Play
       </button>
     </div>
