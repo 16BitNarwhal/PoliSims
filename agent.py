@@ -5,12 +5,14 @@ import time
 import requests
 
 from groq import Groq
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+policy = "Universal Basic Income policy"
 
 industries = [
     "Lumber",
@@ -269,25 +271,19 @@ class PolicySimulation:
 def tyeshi():
     return jsonify({"data": conversations})
 
-
-def main():
-
+@app.route("/api/set-policy", methods=["POST"])
+def setPolicy():
+    print("set policy")
+    global policy, conversations
+    policy = request.get_json()['policy']
+    print(policy)
     sim = PolicySimulation(
-        api_key="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"
+        api_key="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"
     )
+    conversations = []
     sim.create_agents()
-    policy = "Universal Basic Income policy"
     sim.simulate_policy_impact(policy)
-
-    # for agent in sim.agents:
-    #     print(f"Agent {agent.industry} conversation history: {agent.conversation_history}")
-    #     print(
-    #         f"Most affected industries for {agent.industry}: {agent.most_affected_industries}"
-    #     )
+    return "worked perfect."
 
 if __name__ == "__main__":
-    import threading
-
-    t = threading.Thread(target=main)
-    t.start()
     app.run(port=3001, debug=True)
