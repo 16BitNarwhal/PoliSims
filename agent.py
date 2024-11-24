@@ -31,6 +31,8 @@ industries = [
 # ]
 
 conversations = []
+metricss = []
+metrics = ""
 
 
 class Agent:
@@ -146,7 +148,231 @@ class Agent:
         )
 
         self.record_interaction(other_agent)
+
+
+        metrics_prompt = f"""
+        Bill Number: C-5
+        Session: 37-1
+        Introduced: 2001-02-02
+        Name: An Act respecting the protection of wildlife species at risk in Canada
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: -0.132% (Short-term costs of wildlife protection measures)
+        Unemployment: +0.142% (Job losses in affected industries)
+        Inflation: 0.000% (No significant impact)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: -0.123% (Reduced economic activity in certain sectors)
+        Homelessness: 0.000% (No direct impact)
+        Happiness: +0.412% (Increased satisfaction from environmental conservation)
+        --------------------------------------------------
+        Bill Number: C-6
+        Session: 37-1
+        Introduced: 2001-02-05
+        Name: An Act to amend the International Boundary Waters Treaty Act
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: +0.142% (Improved water resource management)
+        Unemployment: 0.000% (No significant impact)
+        Inflation: 0.000% (No direct impact)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: +0.123% (Minor benefits to water-dependent industries)
+        Homelessness: 0.000% (No direct impact)
+        Happiness: +0.213% (Better environmental protection)
+        --------------------------------------------------
+        Bill Number: C-7
+        Session: 37-1
+        Introduced: 2001-02-05
+        Name: An Act in respect of criminal justice for young persons and to amend and repeal other Acts
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: -0.132% (Increased youth justice system costs)
+        Unemployment: -0.142% (More youth rehabilitation programs)
+        Inflation: 0.000% (No direct impact)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: 0.000% (Minimal overall impact)
+        Homelessness: -0.213% (Better youth support systems)
+        Happiness: +0.324% (Improved youth rehabilitation)
+        --------------------------------------------------
+        Bill Number: C-8
+        Session: 37-1
+        Introduced: 2001-02-07
+        Name: An Act to establish the Financial Consumer Agency of Canada and to amend certain Acts in relation to financial institutions
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: +0.231% (Improved financial system stability)
+        Unemployment: 0.000% (No significant impact)
+        Inflation: -0.142% (Better financial oversight)
+        Interest Rates: -0.123% (More efficient financial markets)
+        Incomes: +0.132% (Consumer protection benefits)
+        Homelessness: -0.142% (Better financial protection)
+        Happiness: +0.312% (Increased financial security)
+        --------------------------------------------------
+        Bill Number: C-9
+        Session: 37-1
+        Introduced: 2001-02-15
+        Name: An Act to amend the Canada Elections Act and the Electoral Boundaries Readjustment Act
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: 0.000% (No direct economic impact)
+        Unemployment: 0.000% (No significant impact)
+        Inflation: 0.000% (No direct impact)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: 0.000% (No direct impact)
+        Homelessness: 0.000% (No direct impact)
+        Happiness: +0.213% (Improved democratic representation)
+        --------------------------------------------------
+        Bill Number: C-10
+        Session: 37-1
+        Introduced: 2001-02-20
+        Name: An Act respecting the national marine conservation areas of Canada
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: -0.132% (Short-term marine industry restrictions)
+        Unemployment: -0.142% (New conservation jobs)
+        Inflation: 0.000% (No significant impact)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: +0.123% (Tourism sector growth)
+        Homelessness: 0.000% (No direct impact)
+        Happiness: +0.423% (Environmental preservation)
+        --------------------------------------------------
+        Bill Number: C-11
+        Session: 37-1
+        Introduced: 2001-02-21
+        Name: An Act respecting immigration to Canada and the granting of refugee protection to persons who are displaced, persecuted or in danger
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: +0.312% (Increased workforce and skills)
+        Unemployment: -0.231% (Labor market expansion)
+        Inflation: +0.132% (Minor demand increase)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: +0.142% (Labor market dynamics)
+        Homelessness: +0.123% (Initial settlement challenges)
+        Happiness: +0.324% (Humanitarian benefits)
+        --------------------------------------------------
+        Bill Number: C-12
+        Session: 37-1
+        Introduced: 2001-02-21
+        Name: An Act to amend the Judges Act and to amend another Act in consequence
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: 0.000% (No direct economic impact)
+        Unemployment: 0.000% (No significant impact)
+        Inflation: 0.000% (No direct impact)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: +0.132% (Judicial compensation adjustments)
+        Homelessness: 0.000% (No direct impact)
+        Happiness: +0.142% (Improved judicial system)
+        --------------------------------------------------
+        Bill Number: C-13
+        Session: 37-1
+        Introduced: 2001-02-23
+        Name: An Act to amend the Excise Tax Act
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: -0.142% (Tax adjustment effects)
+        Unemployment: 0.000% (No significant impact)
+        Inflation: +0.132% (Minor price adjustments)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: -0.123% (Tax burden changes)
+        Homelessness: 0.000% (No direct impact)
+        Happiness: -0.132% (Tax-related stress)
+        --------------------------------------------------
+        Bill Number: C-14
+        Session: 37-1
+        Introduced: 2001-03-01
+        Name: An Act respecting shipping and navigation and to amend the Shipping Conferences Exemption Act, 1987 and other Acts
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: +0.231% (Maritime sector efficiency)
+        Unemployment: -0.142% (Maritime job creation)
+        Inflation: -0.123% (Reduced shipping costs)
+        Interest Rates: 0.000% (No direct impact)
+        Incomes: +0.132% (Maritime sector wages)
+        Homelessness: 0.000% (No direct impact)
+        Happiness: +0.142% (Maritime safety improvements)
+        --------------------------------------------------
+        Bill Number: C-17
+        Session: 37-1
+        Introduced: 2001-03-15
+        Name: An Act to amend the Budget Implementation Act, 1997 and the Financial Administration Act
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: +0.231% (Improved fiscal management)
+        Unemployment: 0.000% (No direct impact)
+        Inflation: -0.132% (Better financial controls)
+        Interest Rates: -0.123% (Enhanced fiscal stability)
+        Incomes: +0.142% (Government efficiency savings)
+        Homelessness: 0.000% (No direct impact)
+        Happiness: +0.132% (Better public services)
+        --------------------------------------------------
+        Bill Number: C-18
+        Session: 37-1
+        Introduced: 2001-03-15
+        Name: An Act to amend the Federal-Provincial Fiscal Arrangements Act
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: +0.312% (Improved federal-provincial coordination)
+        Unemployment: -0.142% (Better resource allocation)
+        Inflation: 0.000% (No significant impact)
+        Interest Rates: -0.123% (Enhanced fiscal stability)
+        Incomes: +0.231% (More efficient public services)
+        Homelessness: -0.132% (Better provincial support programs)
+        Happiness: +0.213% (Improved public services)
+        --------------------------------------------------
+        Bill Number: C-20
+        Session: 37-1
+        Introduced: 2001-03-20
+        Name: An Act for granting to Her Majesty certain sums of money for the public service of Canada for the financial year ending March 31, 2001
+        Law: True
+
+        Economic and Social Impacts:
+        GDP: +0.231% (Public service funding impact)
+        Unemployment: -0.132% (Public sector employment)
+        Inflation: +0.123% (Government spending effect)
+        Interest Rates: 0.000% (No significant impact)
+        Incomes: +0.142% (Public service wages)
+        Homelessness: -0.123% (Social service funding)
+        Happiness: +0.213% (Improved public services)
+
+        Taking the above data into account of how previous bills affect the following metrics. 
+
+        This is the current bill being analyzed: {policy}
+
+        Here is the most recent conversation between people about the bill : {conversation}
+
+        I need you to produce the following output in their current values in the EXACT FORMAT, NOTHING ELSE: 
+
+        json of:
+
+        GDP:
+        UNEMPLOYMENT:
+        INFLATION:
+        INTEREST:
+
+
+        NOTHING OUTSIDE OF THAT JSON, THANK YOU, NO NEWLINE CHARS OR AYTHING 
+
+        """
+
+
+        global metrics
+        metrics = self.talk_to_llama(client, metrics_prompt)
+        # conversations.append({"conversation" : conversation, "metrics" : metrics})
         conversations.append(conversation)
+        metricss.append(metrics)
+
         print(conversations)
         return conversation
 
@@ -269,7 +495,7 @@ class PolicySimulation:
 
 @app.route("/api/messages", methods=["GET"])
 def tyeshi():
-    return jsonify({"data": conversations})
+    return jsonify({"data": conversations, "metrics" : metricss})
 
 @app.route("/api/set-policy", methods=["POST"])
 def setPolicy():
