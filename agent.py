@@ -30,6 +30,7 @@ industries = [
 
 conversations = []
 
+
 class Agent:
     def __init__(self, industry: str, status: str):
         self.industry = industry
@@ -250,29 +251,30 @@ class PolicySimulation:
         return conversation_history
 
 
-@app.route("/messages", methods=["GET"])
-def get_messages():
-    try:
-        sim = PolicySimulation(
-            api_key="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"
-        )
-        sim.create_agents()
-        policy = "Universal Basic Income policy"
-        sim.simulate_policy_impact(policy)
-        return jsonify(sim.get_conversation_history())
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+# @app.route("/api/messages", methods=["GET"])
+# def get_messages():
+#     try:
+#         sim = PolicySimulation(
+#             api_key="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"
+#         )
+#         sim.create_agents()
+#         policy = "Universal Basic Income policy"
+#         sim.simulate_policy_impact(policy)
+#         return jsonify(sim.get_conversation_history())
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
 
 
-@app.route("/messages", methods=["GET"])
+@app.route("/api/messages", methods=["GET"])
 def tyeshi():
     return jsonify({"data": conversations})
+
 
 def main():
 
     sim = PolicySimulation(
-            api_key="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"
-        )
+        api_key="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"
+    )
     sim.create_agents()
     policy = "Universal Basic Income policy"
     sim.simulate_policy_impact(policy)
@@ -285,5 +287,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import threading
+
+    t = threading.Thread(target=main)
+    t.start()
     app.run(port=3001, debug=True)

@@ -70,22 +70,29 @@ const App = () => {
 	useEffect(() => {
 		const pollMessages = async () => {
 			try {
-				// const response = await fetch('http://localhost:3001/api/messages');
-				// const responseMessages = await response.json();
-        const responseMessages = [
-          [{'speaker': 'Banking', 'status': 'decision_maker', 'message': "As a decision maker in the banking industry, I've noticed a significant decrease in consumer spending, particularly in debt repayment and savings accounts, which is a major concern for our business model. I'd like to hear your perspective on how Universal Basic Income has affected the insurance industry, specifically in terms of shifting risk assessment, changing demographics, and the potential for increased reinsurance demand."}, {'speaker': 'Insurance', 'status': 'decision_maker', 'message': "I can relate to your concerns about decreased consumer spending, as we're seeing similar trends in the insurance industry, where people might be less inclined to prioritize savings and debt repayment, potentially leading to reduced premiums and policy sales. However, our experience suggests that Universal Basic Income will also lead to an increase in insurance claims as people take on more risks and a shift in demographics, requiring us to adapt our offerings and actuarial models."}, {'speaker': 'Banking', 'status': 'decision_maker', 'message': "I appreciate your candid input on how Universal Basic Income is affecting the insurance industry. Similar to your experience with shifting demographics and increased insurance claims, we're seeing a rise in account closures and loan defaults in our banking portfolio, which is prompting us to re-evaluate our underwriting strategies and customer engagement initiatives to better manage risk and adapt to changing consumer behavior."}, {'speaker': 'Insurance', 'status': 'decision_maker', 'message': "As we discussed how Universal Basic Income will reshape our industries, I plan to explore opportunities for innovative policy developments, such as accident-only policies, to meet the evolving needs of our customers and potentially mitigate the effects of increased claims. I also believe it's essential to collaborate with regulatory bodies to ensure that the new regulations address the changing risk landscape, guaranteeing a stable environment for both our industries to navigate these unprecedented times."}]
-        ];
-        const newMessages = responseMessages.map((conversation) => ({
-          sender: {
-            industry: conversation[0]['speaker'].toLowerCase(),
-            role: conversation[0]['status'].toLowerCase(),
-          },
-          receiver: {
-            industry: conversation[1]['speaker'].toLowerCase(),
-            role: conversation[1]['status'].toLowerCase(),
-          },
-          conversation_history: conversation.map((message) => message['message']),
-        })) as Message[];
+				const response = await fetch(
+					"http://localhost:3001/api/messages"
+				);
+				const responseMessages = (await response.json()).data;
+				console.log(responseMessages);
+				// const responseMessages = [
+				//   [{'speaker': 'Banking', 'status': 'decision_maker', 'message': "As a decision maker in the banking industry, I've noticed a significant decrease in consumer spending, particularly in debt repayment and savings accounts, which is a major concern for our business model. I'd like to hear your perspective on how Universal Basic Income has affected the insurance industry, specifically in terms of shifting risk assessment, changing demographics, and the potential for increased reinsurance demand."}, {'speaker': 'Insurance', 'status': 'decision_maker', 'message': "I can relate to your concerns about decreased consumer spending, as we're seeing similar trends in the insurance industry, where people might be less inclined to prioritize savings and debt repayment, potentially leading to reduced premiums and policy sales. However, our experience suggests that Universal Basic Income will also lead to an increase in insurance claims as people take on more risks and a shift in demographics, requiring us to adapt our offerings and actuarial models."}, {'speaker': 'Banking', 'status': 'decision_maker', 'message': "I appreciate your candid input on how Universal Basic Income is affecting the insurance industry. Similar to your experience with shifting demographics and increased insurance claims, we're seeing a rise in account closures and loan defaults in our banking portfolio, which is prompting us to re-evaluate our underwriting strategies and customer engagement initiatives to better manage risk and adapt to changing consumer behavior."}, {'speaker': 'Insurance', 'status': 'decision_maker', 'message': "As we discussed how Universal Basic Income will reshape our industries, I plan to explore opportunities for innovative policy developments, such as accident-only policies, to meet the evolving needs of our customers and potentially mitigate the effects of increased claims. I also believe it's essential to collaborate with regulatory bodies to ensure that the new regulations address the changing risk landscape, guaranteeing a stable environment for both our industries to navigate these unprecedented times."}]
+				// ];
+				const newMessages = responseMessages.map(
+					(conversation: any) => ({
+						sender: {
+							industry: conversation[0]["speaker"].toLowerCase(),
+							role: conversation[0]["status"].toLowerCase(),
+						},
+						receiver: {
+							industry: conversation[1]["speaker"].toLowerCase(),
+							role: conversation[1]["status"].toLowerCase(),
+						},
+						conversation_history: conversation.map(
+							(message: any) => message["message"]
+						),
+					})
+				) as Message[];
 				setMessages(newMessages);
 			} catch (error) {
 				console.error("Error fetching messages:", error);
@@ -131,28 +138,26 @@ const App = () => {
 
 					// Animate to receiver position
 					await new Promise<void>((resolve) => {
-						const mailElement = document.querySelector(
-							".mail-icon"
-						) as HTMLElement;
-						if (mailElement) {
-							mailElement.style.transition =
-								"left 1s ease-in-out, top 1s ease-in-out";
-							mailElement.style.left = receiverPosition.left;
-							mailElement.style.top = receiverPosition.top;
+						setTimeout(() => {
+							setMailPosition({
+								left: receiverPosition.left,
+								top: receiverPosition.top,
+							});
 
-							// Wait longer at receiver's position (3 seconds total)
+							// Wait for animation to complete
 							setTimeout(() => {
 								setShowMail(false);
 								resolve();
-							}, 2000); // Increased from 1000 to 3000
-						} else {
-							resolve();
-						}
+							}, 2000);
+						}, 1000);
 					});
-				}
 
-				// Increased delay before next message to account for longer display time
-				setTimeout(() => animateMessages(index + 1), 1000); // Increased from 1000 to 4000
+					// Wait before next message
+					await new Promise<void>((resolve) =>
+						setTimeout(resolve, 500)
+					);
+					animateMessages(index + 1);
+				}
 			} else {
 				setIsAnimating(false);
 				setShowMail(false);
@@ -375,11 +380,11 @@ const App = () => {
 									position: "absolute",
 									left: mailPosition.left,
 									top: mailPosition.top,
-									transform: "translate(-50%, -50%)",
 									zIndex: 1000,
 									transition:
 										"left 1s ease-in-out, top 1s ease-in-out",
 									cursor: "pointer",
+									transform: "translate(-50%, -50%)",
 								}}
 								onClick={(e) => {
 									e.stopPropagation();
