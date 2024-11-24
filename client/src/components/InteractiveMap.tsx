@@ -72,40 +72,40 @@ const App = () => {
 	useEffect(() => {
 		const pollMessages = async () => {
 			try {
-				// const response = await fetch('http://localhost:3001/api/messages');
-				// const responseMessages = await response.json();
-				const responseMessages = [
-					{
-						sender: "Lumber_worker",
-						receiver: "Fishing_manager",
-						conversation_history: ["a", "b"],
-					},
-					{
-						sender: "Lumber_worker",
-						receiver: "Fishing_manager",
-						conversation_history: ["c", "d"],
-					},
-					{
-						sender: "Lumber_worker",
-						receiver: "Fishing_manager",
-						conversation_history: ["c", "d"],
-					},
-					{
-						sender: "Lumber_worker",
-						receiver: "Fishing_manager",
-						conversation_history: ["c", "d"],
-					},
-					{
-						sender: "Lumber_worker",
-						receiver: "Fishing_manager",
-						conversation_history: ["c", "d"],
-					},
-					{
-						sender: "Lumber_worker",
-						receiver: "Fishing_manager",
-						conversation_history: ["c", "d"],
-					},
-				];
+				const response = await fetch('http://localhost:3001/api/messages');
+				const responseMessages = await response.json();
+				// const responseMessages = [
+				// 	{
+				// 		sender: "Lumber_worker",
+				// 		receiver: "Fishing_manager",
+				// 		conversation_history: ["a", "b"],
+				// 	},
+				// 	{
+				// 		sender: "Lumber_worker",
+				// 		receiver: "Fishing_manager",
+				// 		conversation_history: ["c", "d"],
+				// 	},
+				// 	{
+				// 		sender: "Lumber_worker",
+				// 		receiver: "Fishing_manager",
+				// 		conversation_history: ["c", "d"],
+				// 	},
+				// 	{
+				// 		sender: "Lumber_worker",
+				// 		receiver: "Fishing_manager",
+				// 		conversation_history: ["c", "d"],
+				// 	},
+				// 	{
+				// 		sender: "Lumber_worker",
+				// 		receiver: "Fishing_manager",
+				// 		conversation_history: ["c", "d"],
+				// 	},
+				// 	{
+				// 		sender: "Lumber_worker",
+				// 		receiver: "Fishing_manager",
+				// 		conversation_history: ["c", "d"],
+				// 	},
+				// ];
 				const newMessages = responseMessages.map((message) => ({
 					sender: {
 						industry: message.sender.split("_")[0].toLowerCase(),

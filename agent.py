@@ -10,7 +10,7 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 industries = [
     "Lumber",
@@ -28,6 +28,7 @@ industries = [
 #     "Fishing",
 # ]
 
+conversations = []
 
 class Agent:
     def __init__(self, industry: str, status: str):
@@ -142,7 +143,8 @@ class Agent:
         )
 
         self.record_interaction(other_agent)
-        print(conversation)
+        conversations.append(conversation)
+        print(conversations)
         return conversation
 
     def generate_descriptions(self, client: Groq, policy: str) -> None:
@@ -248,7 +250,7 @@ class PolicySimulation:
         return conversation_history
 
 
-@app.route("/api/messages", methods=["GET"])
+@app.route("/messages", methods=["GET"])
 def get_messages():
     try:
         sim = PolicySimulation(
@@ -262,13 +264,19 @@ def get_messages():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/messages", methods=["GET"])
+def tyeshi():
+    return jsonify({"data": conversations})
+
 def main():
+
     sim = PolicySimulation(
-        api_key="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"
-    )
+            api_key="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"
+        )
     sim.create_agents()
     policy = "Universal Basic Income policy"
     sim.simulate_policy_impact(policy)
+
     # for agent in sim.agents:
     #     print(f"Agent {agent.industry} conversation history: {agent.conversation_history}")
     #     print(
@@ -277,5 +285,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # app.run(port=3001, debug=True)
     main()
+    app.run(port=3001, debug=True)
