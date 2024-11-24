@@ -237,7 +237,7 @@ class PolicySimulation:
                     "political_preference": random.choice(["conservative", "moderate", "liberal"]),
                 }
                 agent_id = len(self.agents)
-                name = f"{industry}_{status}_{agent_id}"
+                name = f"{industry}_{status}"
                 self.agents.append(Agent(agent_id, name, industry, status, about))
 
     def simulate_policy_impact(self, policy: str):
