@@ -35,9 +35,11 @@ metricss = []
 metrics = ""
 
 keys = [
-    "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",
-    "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",
-    "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"
+    "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",
+    "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",
+    "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",
+    "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",
+    "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",
 ]
 current_key = 0
 
@@ -260,13 +262,13 @@ class Agent:
 
         I need you to produce the following metrics in this format: 
 
-GDP: A%, UNEMPLOYMENT: B%, INFLATION: C%, INTEREST: D%
+GDP: A%, UNEMPLOYMENT: B%, INFLATION: C%, INTEREST RATE: D%
 
-        Ensure nothing else is said. Follow the format without introductory or concluding statements. For example:
+        Ensure NOTHING ELSE is said, NO MATTER WHAT. YOU MUST ONLY GIVE THE METRICS IN THE SPECIFIED FORMAT. Follow the format without introductory or concluding statements. For example:
 
-GDP: 1.2%, UNEMPLOYMENT: 2.3%, INFLATION: 3.4%, INTEREST: 4.5%
+GDP: 1.2%, UNEMPLOYMENT: 2.3%, INFLATION: 3.4%, INTEREST RATE: 4.5%.
 
-        Do not output anything else than the metrics.
+        DO NOT output anything else than the metrics.
 
         """
 
